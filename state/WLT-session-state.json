@@ -1,0 +1,16 @@
+{
+  "_comment": "Estado efêmero da sessão atual. Ponte entre turns. WLT-lt-chief atualiza a cada troca de agent/task.",
+  "session_id": null,
+  "started_at": null,
+  "updated_at": null,
+  "active_agent": "WLT-lt-chief",
+  "active_task": "WLT-run-initial-diagnosis",
+  "active_workflow": null,
+  "last_artifact_produced": null,
+  "last_checklist_result": null,
+  "awaiting_user_decision": false,
+  "pending_menu": null,
+  "open_questions": [],
+  "bypass_pending": false,
+  "notes": []
+}

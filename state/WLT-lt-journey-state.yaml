@@ -1,0 +1,149 @@
+# state/WLT-lt-journey-state.yaml
+# Estado canônico da jornada. WLT-lt-chief lê no início de cada sessão e grava após cada task.
+# Este arquivo é o TEMPLATE zerado. Copie para uma instância por usuário/projeto.
+journey:
+  current_state: not_started        # not_started | in_progress | blocked | done
+  current_workflow:                 # ex: WLT-lt-from-zero
+  current_agent: WLT-lt-chief
+  current_task: WLT-run-initial-diagnosis
+  user_stage:                       # from_zero | has_niche | has_product | has_traffic_no_sales | has_sales_wants_scale
+  bypasses: []                      # {etapa_pulada, risco, data, autorizado_pelo_usuario: true}
+  completed_steps: []
+  failed_steps: []
+
+identity:
+  user_background:
+  skills: []
+  selected_skill:
+  niche:
+  micro_niche:
+  unfair_advantage:
+  validation_notes:
+
+avatar:
+  profile:
+  pains_visible: []
+  pains_invisible: []
+  voices_in_head: []
+  sapatos_apertados: []
+  selected_sapato_apertado:
+  desires: []
+  dreams: []
+  objections: []
+  failed_attempts: []
+  beliefs: []
+  language_bank: []
+  evidence_ledger: []               # ver templates/WLT-evidence-ledger-template.yaml
+
+demand:
+  research_sources: []
+  demand_score:                     # 0-10
+  urgency_score:
+  buying_intent_score:
+  competition_score:
+  creative_potential_score:
+  decision:                         # go | no_go | pivot_angle
+  risks: []
+
+product:
+  name:
+  type:                             # ver data/WLT-product-types.yaml
+  format:
+  price:
+  promise:
+  quick_win:
+  consumption_time:
+  deliverables: []
+  order_bumps: []                   # itens no formato templates/WLT-order-bumps-template.yaml
+  order_bumps_validation_status:    # pending | pass | fail | bypass
+  upsell:
+  downsell:                         # versão menor oferecida na recusa do upsell (mod.14)
+  validation_status:                # pending | pass | fail | bypass
+  product_brief:
+
+offer:
+  primary_promise:
+  big_idea:
+  negation:
+  origin_story:
+  proof:
+  mechanism:
+  stack: []
+  bonuses: []
+  anchor:
+  cta:
+  guarantee:
+  objections: []
+  validation_status:
+
+deliverables:
+  blueprint:
+  ebook:
+  minicourse:
+  ai_agent:
+  micro_app:
+  checklist:
+  pack:
+
+page:
+  headline:
+  sections: []
+  twelve_folds: []
+  copy:
+  design_direction:
+  validation_status:
+
+creatives:
+  research:
+  angles: []
+  video_ads: []
+  static_ads: []
+  recording_plan:
+  winners: []
+  testing_status:                   # not_started | testing | winner_found
+
+traffic:
+  tracking:                         # ver data/WLT-tracking-stack.yaml + WLT-tracking-readiness-checklist
+    pixel_id:
+    capi_status:                    # pending | active
+    purchase_event_status:          # pending | firing
+    utm_convention:
+    validation:                     # pending | pass | fail
+  frequency:                        # frequência média (sintoma de fadiga/público pequeno)
+  budget:
+  campaign_structure:
+  roas:
+  cac:
+  cpv:
+  ctr_link:
+  connect_rate:
+  checkout_rate:
+  checkout_conversion:
+  cpc_checkout:
+  diagnosis:
+  bottleneck:
+
+funnel_economics:                   # ver data/WLT-funnel-economics.yaml
+  bump_conversion_rate:             # compras c/ bump ÷ total × 100 (boa: ~30-40%)
+  upsell_conversion_rate:           # referência ~5%
+  avg_ticket_main:
+  avg_ticket_funnel:
+  funnel_uplift_pct:
+
+scale:
+  readiness:                        # not_ready | ready
+  pre_scale_status:                 # not_started | in_progress | done (regras: data/WLT-traffic-metrics.yaml -> pre_escala)
+  pre_scale_actions: []
+  scale_plan:
+  next_offer:
+  upsell:
+  bump:
+  ltv_plan:
+  roadmap_30_60_90:
+
+ai_production:
+  prompts_generated: []
+  target_platform:
+  generated_for:
+  implementation_status:
+  review_notes:
