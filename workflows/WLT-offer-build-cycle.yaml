@@ -1,0 +1,19 @@
+id: WLT-offer-build-cycle
+name: "Ciclo de Construção de Oferta"
+version: "1.0.0"
+type: sub-cycle
+metadata: { when: "Construir/validar a oferta.", entry_agent: WLT-offer-architect, requires: "product.validation_status=pass; bumps validados antes da promessa (WLT-order-bump-checklist)" }
+execution_modes: { interactive: "aprova bloco a bloco", yolo: "monta oferta completa" }
+default_mode: interactive
+
+sequence:
+  - { step: WLT-build-order-bumps, agent: WLT-offer-architect, next: WLT-validate-order-bumps, on_failure: WLT-build-order-bumps }
+  - { step: WLT-validate-order-bumps, agent: WLT-offer-architect, next: WLT-build-offer-promise,  on_failure: WLT-build-order-bumps }
+  - { step: WLT-build-offer-promise, agent: WLT-offer-architect, next: WLT-build-offer-big-idea,  on_failure: WLT-build-offer-promise }
+  - { step: WLT-build-offer-big-idea, agent: WLT-offer-architect, next: WLT-build-offer-mechanism, on_failure: WLT-build-offer-big-idea }
+  - { step: WLT-build-offer-mechanism, agent: WLT-offer-architect, next: WLT-build-offer-stack,     on_failure: WLT-build-offer-mechanism }
+  - { step: WLT-build-offer-stack, agent: WLT-offer-architect, next: WLT-validate-offer,        on_failure: WLT-build-offer-stack }
+  - { step: WLT-validate-offer, agent: WLT-offer-architect, next: done,                  on_failure: WLT-build-offer-stack }
+
+decision_guidance:
+  - "Bloqueia se produto não validado. Menu de produção após oferta aprovada (ex: gerar landing)."

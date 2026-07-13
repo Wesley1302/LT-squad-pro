@@ -1,0 +1,22 @@
+id: WLT-funnel-diagnosis-cycle
+name: "Ciclo de Diagnóstico de Gargalo"
+version: "1.0.0"
+type: diagnostic
+metadata: { when: "Gastei e não vendi / ROAS baixo / travei no tráfego.", entry_agent: WLT-funnel-diagnostician }
+execution_modes: { interactive: "pede métricas", yolo: "diagnostica com métricas dadas" }
+default_mode: interactive
+
+sequence:
+  - { step: WLT-diagnose-funnel-bottleneck, agent: WLT-funnel-diagnostician, next: route-to-owner, on_failure: ask-for-metrics }
+
+route_to_owner:
+  cpv_alto: { agent: WLT-creative-intelligence-analyst, task: WLT-analyze-creative-references }
+  cpc_alto: { agent: WLT-sales-page-builder, task: WLT-write-sales-page }
+  cac_alto: { agent: WLT-offer-architect, task: WLT-build-offer-stack }
+  sem_venda_teste_valido: { agent: WLT-product-miojo-builder, task: WLT-build-miojo-product }
+  winner_validado: { agent: WLT-scale-architect, task: WLT-build-scale-plan }
+
+decision_guidance:
+  - "Sem métricas -> pede as 4 (ROAS/CPV/CPC/CAC) + secundárias. Uma correção por vez."
+  - "ROAS<2 e quer escalar -> bloqueia (corrigir rota, não escalar)."
+  - "Não manda trocar produto sem teste válido (7d verba real)."

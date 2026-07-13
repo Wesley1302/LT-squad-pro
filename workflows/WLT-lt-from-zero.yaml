@@ -1,0 +1,76 @@
+id: WLT-lt-from-zero
+name: "Low Ticket do Zero"
+version: "1.0.0"
+type: end-to-end
+metadata:
+  when: "Usuário não sabe o que vender / começar do zero."
+  entry_agent: WLT-lt-chief
+  ordem: "Produto -> Criativo -> Página -> Tráfego -> Escala. Não pula etapas."
+
+execution_modes:
+  yolo: "Roda a sequência inteira, parando só em bloqueios e validações."
+  interactive: "Após cada artefato aprovado, exibe o menu de decisão (1-5)."
+  preflight: "Checa pré-requisitos de cada fase antes de rodar."
+default_mode: interactive
+
+decision_menu: |
+  Artefato aprovado. Escolha:
+  [1] Continuar para a próxima etapa
+  [2] Gerar prompt para Codex / Claude Code
+  [3] Gerar prompt para Lovable / Antigravity
+  [4] Gerar prompt para outra LLM
+  [5] Revisar/validar antes de avançar
+  (2/3/4 chamam WLT-ai-production-prompt-engineer se o artefato passou no checklist)
+
+phases:
+  - id: strategy
+    name: "Estratégia (Tier 1)"
+    steps: [WLT-run-initial-diagnosis, WLT-identify-money-skill, WLT-compress-niche, WLT-research-avatar, WLT-extract-voice-of-customer, WLT-validate-demand, WLT-select-sapato-apertado, WLT-build-miojo-product, WLT-validate-miojo-product, WLT-build-order-bumps, WLT-validate-order-bumps, WLT-build-offer-promise, WLT-build-offer-big-idea, WLT-build-offer-mechanism, WLT-build-offer-stack, WLT-validate-offer]
+  - id: production
+    name: "Produção (Tier 2)"
+    steps: [WLT-create-deliverables-blueprint, WLT-write-sales-page, WLT-validate-sales-page, WLT-analyze-creative-references, WLT-generate-video-ads, WLT-generate-static-ads, WLT-create-recording-direction]
+  - id: traffic_scale
+    name: "Tráfego & Escala"
+    steps: [WLT-setup-tracking, WLT-build-traffic-test-plan, WLT-diagnose-funnel-bottleneck, WLT-build-scale-plan, WLT-build-next-offer-plan]
+
+sequence:
+  - { step: WLT-run-initial-diagnosis, agent: WLT-lt-chief,                next: WLT-identify-money-skill,     on_failure: ask-user-stage }
+  - { step: WLT-identify-money-skill, agent: WLT-money-skill-strategist, next: WLT-compress-niche,           on_failure: WLT-identify-money-skill }
+  - { step: WLT-compress-niche, agent: WLT-niche-compressor,       next: WLT-research-avatar,          on_failure: WLT-compress-niche }
+  - { step: WLT-research-avatar, agent: WLT-avatar-researcher,      next: WLT-extract-voice-of-customer,on_failure: WLT-research-avatar }
+  - { step: WLT-extract-voice-of-customer, agent: WLT-avatar-researcher,      next: WLT-validate-demand,          on_failure: WLT-extract-voice-of-customer }
+  - { step: WLT-validate-demand, agent: WLT-demand-validator,       next: WLT-select-sapato-apertado,   on_failure: WLT-research-avatar }
+  - { step: WLT-select-sapato-apertado, agent: WLT-avatar-researcher,      next: WLT-build-miojo-product,      on_failure: WLT-select-sapato-apertado }
+  - { step: WLT-build-miojo-product, agent: WLT-product-miojo-builder,  next: WLT-validate-miojo-product,   on_failure: WLT-build-miojo-product }
+  - { step: WLT-validate-miojo-product, agent: WLT-product-miojo-builder,  next: WLT-build-order-bumps,      on_failure: WLT-build-miojo-product }
+  - { step: WLT-build-order-bumps, agent: WLT-offer-architect,        next: WLT-validate-order-bumps,   on_failure: WLT-build-order-bumps }
+  - { step: WLT-validate-order-bumps, agent: WLT-offer-architect,        next: WLT-build-offer-promise,    on_failure: WLT-build-order-bumps }
+  - { step: WLT-build-offer-promise, agent: WLT-offer-architect,        next: WLT-build-offer-big-idea,     on_failure: WLT-build-offer-promise }
+  - { step: WLT-build-offer-big-idea, agent: WLT-offer-architect,        next: WLT-build-offer-mechanism,    on_failure: WLT-build-offer-big-idea }
+  - { step: WLT-build-offer-mechanism, agent: WLT-offer-architect,        next: WLT-build-offer-stack,        on_failure: WLT-build-offer-mechanism }
+  - { step: WLT-build-offer-stack, agent: WLT-offer-architect,        next: WLT-validate-offer,           on_failure: WLT-build-offer-stack }
+  - { step: WLT-validate-offer, agent: WLT-offer-architect,        next: WLT-create-deliverables-blueprint, on_failure: WLT-build-offer-stack }
+  - { step: WLT-create-deliverables-blueprint, agent: WLT-deliverable-builder, next: WLT-write-sales-page,         on_failure: WLT-create-deliverables-blueprint }
+  - { step: WLT-write-sales-page, agent: WLT-sales-page-builder,     next: WLT-validate-sales-page,      on_failure: WLT-write-sales-page }
+  - { step: WLT-validate-sales-page, agent: WLT-sales-page-builder,     next: WLT-analyze-creative-references, on_failure: WLT-write-sales-page }
+  - { step: WLT-analyze-creative-references, agent: WLT-creative-intelligence-analyst, next: WLT-generate-video-ads, on_failure: WLT-analyze-creative-references }
+  - { step: WLT-generate-video-ads, agent: WLT-video-ads-builder,      next: WLT-generate-static-ads,      on_failure: WLT-generate-video-ads }
+  - { step: WLT-generate-static-ads, agent: WLT-static-ads-builder,     next: WLT-create-recording-direction, on_failure: WLT-generate-static-ads }
+  - { step: WLT-create-recording-direction, agent: WLT-recording-director,     next: WLT-setup-tracking,           on_failure: WLT-create-recording-direction }
+  - { step: WLT-setup-tracking, agent: WLT-traffic-planner,        next: WLT-build-traffic-test-plan,  on_failure: WLT-setup-tracking }
+  - { step: WLT-build-traffic-test-plan, agent: WLT-traffic-planner,        next: WLT-diagnose-funnel-bottleneck, on_failure: WLT-build-traffic-test-plan }
+  - { step: WLT-diagnose-funnel-bottleneck, agent: WLT-funnel-diagnostician,   next: WLT-build-scale-plan,         on_failure: route-to-owner }
+  - { step: WLT-build-scale-plan, agent: WLT-scale-architect,        next: WLT-build-next-offer-plan,    on_failure: WLT-diagnose-funnel-bottleneck }
+  - { step: WLT-build-next-offer-plan, agent: WLT-scale-architect,        next: done,                     on_failure: WLT-build-next-offer-plan }
+
+handoff_prompts:
+  after_product: "Produto travado. Agora os order bumps — ~30% do lucro mora neles."
+  after_bumps: "Bumps travados. Agora a oferta completa — principal + bumps + upsell."
+  after_offer: "Oferta óbvia pronta. Agora a página que continua a conversa do criativo."
+  after_page: "Página no ar. Agora os criativos — o 80/20. Volume: mínimo 5 por rodada, ideal 10+."
+  before_traffic: "Só ligamos o tempero (tráfego) com produto+criativo+página prontos."
+
+decision_guidance:
+  - "Se o usuário pedir para pular, aplicar regra de bloqueio (risco -> pré-req -> redireciona)."
+  - "Após cada artefato aprovado, mostrar decision_menu."
+  - "WLT-diagnose-funnel-bottleneck e WLT-build-scale-plan só rodam quando há métricas / winner validado."

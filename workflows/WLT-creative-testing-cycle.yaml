@@ -1,0 +1,19 @@
+id: WLT-creative-testing-cycle
+name: "Ciclo de Criativos & Teste"
+version: "1.0.0"
+type: sub-cycle
+metadata: { when: "Gerar criativos e montar teste.", entry_agent: WLT-creative-intelligence-analyst, requires: "page.validation_status=pass" }
+execution_modes: { interactive: "aprova por rodada", yolo: "gera ≥5 (ideal 10+) + plano de teste" }
+default_mode: interactive
+
+sequence:
+  - { step: WLT-analyze-creative-references, agent: WLT-creative-intelligence-analyst, next: WLT-generate-video-ads, on_failure: WLT-analyze-creative-references }
+  - { step: WLT-generate-video-ads, agent: WLT-video-ads-builder,      next: WLT-generate-static-ads,      on_failure: WLT-generate-video-ads }
+  - { step: WLT-generate-static-ads, agent: WLT-static-ads-builder,     next: WLT-create-recording-direction, on_failure: WLT-generate-static-ads }
+  - { step: WLT-create-recording-direction, agent: WLT-recording-director,     next: WLT-setup-tracking,           on_failure: WLT-create-recording-direction }
+  - { step: WLT-setup-tracking, agent: WLT-traffic-planner,        next: WLT-build-traffic-test-plan,  on_failure: WLT-setup-tracking }
+  - { step: WLT-build-traffic-test-plan, agent: WLT-traffic-planner,        next: done,                     on_failure: WLT-build-traffic-test-plan }
+
+decision_guidance:
+  - "Bloqueia se página não validada. Mínimo 5 criativos por rodada (existe-no-metodo); ideal 10+ para escalar."
+  - "Achou winner (50 conv + ROAS 2)? -> masteriza (data/WLT-creative-formats.yaml -> masterizacao_de_winners: gate winner-only, ~90% derivado de winner) e vai para WLT-scale-cycle."

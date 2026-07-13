@@ -1,0 +1,27 @@
+id: WLT-deliverable-production-cycle
+name: "Ciclo de Produção de Entregáveis"
+version: "1.0.0"
+type: sub-cycle
+metadata: { when: "Produzir os entregáveis da oferta.", entry_agent: WLT-deliverable-builder, requires: "offer.validation_status=pass" }
+execution_modes: { interactive: "por formato", yolo: "gera blueprints" }
+default_mode: interactive
+
+sequence:
+  - { step: WLT-create-deliverables-blueprint, agent: WLT-deliverable-builder, next: route-by-format, on_failure: WLT-create-deliverables-blueprint }
+  - { step: WLT-generate-ebook-blueprint, agent: WLT-deliverable-builder, next: ai-production, on_failure: WLT-generate-ebook-blueprint }
+  - { step: WLT-generate-minicourse-blueprint, agent: WLT-deliverable-builder, next: ai-production, on_failure: WLT-generate-minicourse-blueprint }
+  - { step: WLT-generate-ai-agent-blueprint, agent: WLT-deliverable-builder, next: ai-production, on_failure: WLT-generate-ai-agent-blueprint }
+  - { step: WLT-generate-micro-app-blueprint, agent: WLT-deliverable-builder, next: ai-production, on_failure: WLT-generate-micro-app-blueprint }
+
+route_by_format:
+  ebook: WLT-generate-ebook-blueprint
+  minicurso: WLT-generate-minicourse-blueprint
+  agente_de_ia: WLT-generate-ai-agent-blueprint
+  micro_app: WLT-generate-micro-app-blueprint
+  outro: WLT-create-deliverables-blueprint
+
+ai_production:
+  note: "Blueprint aprovado -> WLT-ai-production-prompt-cycle para gerar o prompt de produção."
+
+decision_guidance:
+  - "Bloqueia se oferta não validada. Agente de IA -> aponta skill assistant-creator-v2."

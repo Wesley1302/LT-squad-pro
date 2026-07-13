@@ -1,0 +1,15 @@
+id: WLT-product-validation-cycle
+name: "Ciclo de Validação de Produto"
+version: "1.0.0"
+type: sub-cycle
+metadata: { when: "Validar/auditar produto isoladamente.", entry_agent: WLT-product-miojo-builder }
+execution_modes: { interactive: "item a item", yolo: "roda checklist" }
+default_mode: interactive
+
+sequence:
+  - { step: WLT-validate-miojo-product, agent: WLT-product-miojo-builder, next: done, on_failure: WLT-build-miojo-product }
+  - { step: WLT-build-miojo-product, agent: WLT-product-miojo-builder, next: WLT-validate-miojo-product, on_failure: WLT-build-miojo-product }
+
+decision_guidance:
+  - "PASS -> order bumps (WLT-build-order-bumps) e depois oferta (WLT-offer-build-cycle). FAIL -> refaz. BYPASS só com frase exata do usuário."
+  - "Sem avatar/demanda no state -> bloqueia e manda para WLT-research-avatar/WLT-validate-demand."

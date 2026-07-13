@@ -1,0 +1,45 @@
+id: WLT-lt-with-existing-niche
+name: "Low Ticket com Nicho Existente"
+version: "1.0.0"
+type: end-to-end
+metadata:
+  when: "Usuário tem nicho mas não tem produto."
+  entry_agent: WLT-lt-chief
+  note: "Pula money-skill; começa checando o nicho e vai direto para avatar/demanda ANTES do produto."
+execution_modes: { interactive: "menu após cada artefato", yolo: "roda até tráfego" }
+default_mode: interactive
+
+phases:
+  - { id: setup, name: "Nicho & Avatar", steps: [WLT-run-initial-diagnosis, WLT-compress-niche, WLT-research-avatar, WLT-extract-voice-of-customer, WLT-validate-demand, WLT-select-sapato-apertado] }
+  - { id: strategy, name: "Produto & Oferta", steps: [WLT-build-miojo-product, WLT-validate-miojo-product, WLT-build-order-bumps, WLT-validate-order-bumps, WLT-build-offer-promise, WLT-build-offer-big-idea, WLT-build-offer-mechanism, WLT-build-offer-stack, WLT-validate-offer] }
+  - { id: production_traffic, name: "Produção & Tráfego", steps: [WLT-create-deliverables-blueprint, WLT-write-sales-page, WLT-validate-sales-page, WLT-analyze-creative-references, WLT-generate-video-ads, WLT-generate-static-ads, WLT-create-recording-direction, WLT-setup-tracking, WLT-build-traffic-test-plan] }
+
+sequence:
+  - { step: WLT-run-initial-diagnosis, agent: WLT-lt-chief,              next: WLT-compress-niche,         on_failure: ask-user-stage }
+  - { step: WLT-compress-niche, agent: WLT-niche-compressor,      next: WLT-research-avatar,        on_failure: WLT-compress-niche }
+  - { step: WLT-research-avatar, agent: WLT-avatar-researcher,     next: WLT-extract-voice-of-customer, on_failure: WLT-research-avatar }
+  - { step: WLT-extract-voice-of-customer, agent: WLT-avatar-researcher,   next: WLT-validate-demand,        on_failure: WLT-extract-voice-of-customer }
+  - { step: WLT-validate-demand, agent: WLT-demand-validator,      next: WLT-select-sapato-apertado, on_failure: WLT-research-avatar }
+  - { step: WLT-select-sapato-apertado, agent: WLT-avatar-researcher,     next: WLT-build-miojo-product,    on_failure: WLT-select-sapato-apertado }
+  - { step: WLT-build-miojo-product, agent: WLT-product-miojo-builder, next: WLT-validate-miojo-product, on_failure: WLT-build-miojo-product }
+  - { step: WLT-validate-miojo-product, agent: WLT-product-miojo-builder, next: WLT-build-order-bumps,     on_failure: WLT-build-miojo-product }
+  - { step: WLT-build-order-bumps, agent: WLT-offer-architect,       next: WLT-validate-order-bumps,  on_failure: WLT-build-order-bumps }
+  - { step: WLT-validate-order-bumps, agent: WLT-offer-architect,       next: WLT-build-offer-promise,   on_failure: WLT-build-order-bumps }
+  - { step: WLT-build-offer-promise, agent: WLT-offer-architect,       next: WLT-build-offer-big-idea,   on_failure: WLT-build-offer-promise }
+  - { step: WLT-build-offer-big-idea, agent: WLT-offer-architect,       next: WLT-build-offer-mechanism,  on_failure: WLT-build-offer-big-idea }
+  - { step: WLT-build-offer-mechanism, agent: WLT-offer-architect,       next: WLT-build-offer-stack,      on_failure: WLT-build-offer-mechanism }
+  - { step: WLT-build-offer-stack, agent: WLT-offer-architect,       next: WLT-validate-offer,         on_failure: WLT-build-offer-stack }
+  - { step: WLT-validate-offer, agent: WLT-offer-architect,       next: WLT-create-deliverables-blueprint, on_failure: WLT-build-offer-stack }
+  - { step: WLT-create-deliverables-blueprint, agent: WLT-deliverable-builder, next: WLT-write-sales-page,   on_failure: WLT-create-deliverables-blueprint }
+  - { step: WLT-write-sales-page, agent: WLT-sales-page-builder,    next: WLT-validate-sales-page,    on_failure: WLT-write-sales-page }
+  - { step: WLT-validate-sales-page, agent: WLT-sales-page-builder,    next: WLT-analyze-creative-references, on_failure: WLT-write-sales-page }
+  - { step: WLT-analyze-creative-references, agent: WLT-creative-intelligence-analyst, next: WLT-generate-video-ads, on_failure: WLT-analyze-creative-references }
+  - { step: WLT-generate-video-ads, agent: WLT-video-ads-builder,     next: WLT-generate-static-ads,    on_failure: WLT-generate-video-ads }
+  - { step: WLT-generate-static-ads, agent: WLT-static-ads-builder,    next: WLT-create-recording-direction, on_failure: WLT-generate-static-ads }
+  - { step: WLT-create-recording-direction, agent: WLT-recording-director, next: WLT-setup-tracking, on_failure: WLT-create-recording-direction }
+  - { step: WLT-setup-tracking, agent: WLT-traffic-planner,       next: WLT-build-traffic-test-plan, on_failure: WLT-setup-tracking }
+  - { step: WLT-build-traffic-test-plan, agent: WLT-traffic-planner,       next: done,                   on_failure: WLT-build-traffic-test-plan }
+
+decision_guidance:
+  - "Exige demanda + vozes reais ANTES de produto (regra de bloqueio se pular)."
+  - "Menu de produção por IA após cada artefato aprovado."

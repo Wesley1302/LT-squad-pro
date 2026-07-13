@@ -1,0 +1,16 @@
+id: WLT-scale-cycle
+name: "Ciclo de Escala & Esteira"
+version: "1.0.0"
+type: scale
+metadata: { when: "Tenho venda e quero escalar.", entry_agent: WLT-scale-architect, requires: "winner validado (ROAS 2+, 50+ conversões)" }
+execution_modes: { interactive: "confirma prontidão e caixa", yolo: "monta plano" }
+default_mode: interactive
+
+sequence:
+  - { step: WLT-build-scale-plan, agent: WLT-scale-architect, next: WLT-build-next-offer-plan, on_failure: WLT-diagnose-funnel-bottleneck }
+  - { step: WLT-build-next-offer-plan, agent: WLT-scale-architect, next: done,                  on_failure: WLT-build-next-offer-plan }
+
+decision_guidance:
+  - "not_ready (ROAS<2 sem LTV) -> volta para WLT-funnel-diagnosis-cycle."
+  - "Nova oferta/produto reinicia o ciclo pelo método (WLT-offer-build-cycle / WLT-product-validation-cycle)."
+  - "Orçamento de escala = 10x ticket. Regra dia 1-2 (existe-no-metodo mod.12): sem venda -> pausa; com venda e ROAS baixo -> +24h; reduzir orçamento antes de pausar; média >= ~1,5 conforme esteira."

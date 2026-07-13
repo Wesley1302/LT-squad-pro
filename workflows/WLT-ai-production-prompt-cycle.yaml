@@ -1,0 +1,36 @@
+id: WLT-ai-production-prompt-cycle
+name: "Ciclo de Prompt de Produção por IA"
+version: "1.0.0"
+type: production-branch
+metadata:
+  when: "Usuário escolheu opção 2/3/4 do menu, a qualquer etapa aprovada."
+  entry_agent: WLT-ai-production-prompt-engineer
+  gate: "Só roda se o artefato de origem tem validation_status=pass."
+execution_modes: { interactive: "confirma plataforma", yolo: "gera prompt" }
+default_mode: interactive
+
+route_by_artifact:
+  ebook: WLT-generate-ebook-generation-prompt
+  landing_page: WLT-generate-landing-page-prompt
+  agente_de_ia: WLT-generate-ai-agent-prompt
+  micro_app: WLT-generate-micro-app-prompt
+  design_system: WLT-generate-design-system-prompt
+  scripts_automacao: WLT-generate-codex-prompt
+  componentes_frontend: WLT-generate-claude-code-prompt
+  implementacao_generica: WLT-generate-implementation-prompt
+
+sequence:
+  - { step: gate-check, agent: WLT-ai-production-prompt-engineer, next: route-by-artifact, on_failure: return-to-owner }
+  - { step: WLT-generate-ebook-generation-prompt, agent: WLT-ai-production-prompt-engineer, next: done, on_failure: return-to-owner }
+  - { step: WLT-generate-landing-page-prompt, agent: WLT-ai-production-prompt-engineer, next: done, on_failure: return-to-owner }
+  - { step: WLT-generate-ai-agent-prompt, agent: WLT-ai-production-prompt-engineer, next: done, on_failure: return-to-owner }
+  - { step: WLT-generate-micro-app-prompt, agent: WLT-ai-production-prompt-engineer, next: done, on_failure: return-to-owner }
+  - { step: WLT-generate-design-system-prompt, agent: WLT-ai-production-prompt-engineer, next: done, on_failure: return-to-owner }
+  - { step: WLT-generate-codex-prompt, agent: WLT-ai-production-prompt-engineer, next: done, on_failure: return-to-owner }
+  - { step: WLT-generate-claude-code-prompt, agent: WLT-ai-production-prompt-engineer, next: done, on_failure: return-to-owner }
+  - { step: WLT-generate-implementation-prompt, agent: WLT-ai-production-prompt-engineer, next: done, on_failure: return-to-owner }
+
+decision_guidance:
+  - "gate-check bloqueia se o artefato falhou no checklist (ex: sem oferta -> sem landing; sem brief -> sem ebook)."
+  - "return-to-owner: devolve ao agent dono do artefato reprovado."
+  - "Este agent NUNCA inventa estratégia — só traduz artefato aprovado em prompt."

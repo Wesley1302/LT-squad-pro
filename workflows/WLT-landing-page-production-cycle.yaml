@@ -1,0 +1,16 @@
+id: WLT-landing-page-production-cycle
+name: "Ciclo de Produção de Página / Prompt de Landing"
+version: "1.0.0"
+type: sub-cycle
+metadata: { when: "Escrever página e/ou gerar prompt de landing premium.", entry_agent: WLT-sales-page-builder, requires: "offer.validation_status=pass" }
+execution_modes: { interactive: "dobra a dobra", yolo: "12 dobras + prompt" }
+default_mode: interactive
+
+sequence:
+  - { step: WLT-write-sales-page, agent: WLT-sales-page-builder, next: WLT-validate-sales-page, on_failure: WLT-write-sales-page }
+  - { step: WLT-validate-sales-page, agent: WLT-sales-page-builder, next: WLT-generate-landing-page-prompt, on_failure: WLT-write-sales-page }
+  - { step: WLT-generate-landing-page-prompt, agent: WLT-ai-production-prompt-engineer, next: done, on_failure: WLT-write-sales-page }
+
+decision_guidance:
+  - "WLT-generate-landing-page-prompt SÓ roda se offer + sales_page = PASS. Se oferta falhou, bloqueia e manda para WLT-offer-build-cycle."
+  - "Prompt inclui estratégia + UI/UX + GSAP (não GASP) + engenharia + restrições. Preço só na dobra 9, CTA verbal, sem depoimento inventado."
