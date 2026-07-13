@@ -1,0 +1,10 @@
+# templates/WLT-video-ads-template.yaml
+# Rodada de vídeo: mínimo 5 (existe-no-metodo), ideal 10+.
+video_ads_round:
+  round_id:
+  target_min: 10
+  ads: []                 # blocos no formato WLT-creative-matrix-template (type: video)
+  # Cada ad segue Fórmula A (sapato->voz->solução->CTA) ou B (atenção->promessa->prova/CTA).
+  mix_check:
+    formatos_variados: false   # marcar true quando cobrir >=4 formatos
+    ganchos_variados: false    # marcar true quando cobrir >=4 mecanismos

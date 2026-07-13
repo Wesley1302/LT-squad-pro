@@ -1,0 +1,15 @@
+# templates/WLT-product-brief-template.yaml
+product_brief:
+  name:
+  type:                   # ver data/WLT-product-types.yaml
+  price:
+  target_avatar:
+  sapato_apertado:
+  promise:
+  quick_win:
+  deliverables: []
+  consumption_time:       # deve ser <= 48h
+  format:
+  why_it_is_miojo:        # justificar os 4 critérios
+  why_it_will_sell:       # demanda + potencial criativo
+  risks: []

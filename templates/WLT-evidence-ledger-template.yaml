@@ -1,0 +1,14 @@
+# templates/WLT-evidence-ledger-template.yaml
+# Um bloco por descoberta de público. Sem source_url verificável => confidence: baixa + hipótese.
+evidence_item:
+  id:
+  source_type:            # youtube_comment | reddit_post | tiktok_comment | instagram_comment | review | ads_library | user_input | manual_research | other
+  source_url:
+  raw_quote:
+  cleaned_quote:
+  insight:
+  category:               # dor | desejo | objecao | voz_da_cabeca | tentativa_frustrada | crença | sonho | medo | prova | linguagem
+  confidence:             # baixa | media | alta
+  implication_for_product:
+  implication_for_offer:
+  implication_for_creative:

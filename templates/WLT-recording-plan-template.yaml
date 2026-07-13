@@ -1,0 +1,19 @@
+# templates/WLT-recording-plan-template.yaml
+recording_plan:
+  criativos: []           # um bloco por criativo:
+  # - creative_id:
+  #   cenario:
+  #   roupa:
+  #   enquadramento:
+  #   luz:
+  #   expressao_energia:
+  #   ritmo:
+  #   gestos:
+  #   objetos:             # para tangibilizar o produto
+  #   b_roll: []
+  #   texto_na_tela:
+  #   cortes:
+  #   legendas:
+  #   versao: com_rosto | faceless | ugc
+  #   cta_botao: "mostrar onde apontar"
+  tempo_estimado: "~30-50min por 5 criativos"

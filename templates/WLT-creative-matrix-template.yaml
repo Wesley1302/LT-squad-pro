@@ -1,0 +1,29 @@
+# templates/WLT-creative-matrix-template.yaml
+# Um bloco por criativo (vídeo ou estático).
+creative:
+  id:
+  type:                   # video | static | carrossel
+  format:                 # lo-fi | caixinha | fofoquinha | react | print | ugc | headline | ...
+  angle:
+  sapato_apertado:
+  voice_in_head:
+  hook_verbal:
+  hook_visual:
+  promise:
+  proof:                  # real ou vazio (nunca inventado)
+  script:                 # para vídeo
+  scenes: []              # para vídeo
+  text_on_screen:
+  cta:                    # aponta o botão; nunca "Comprar"
+  duration:               # 15-30s ou 45-60s
+  production_level:       # lo-fi
+  hypothesis:             # o que este criativo testa
+  metric_to_watch:        # métrica primária: view3s | view25 | view50 | ctr | tx_compra_view50 | roas
+  priority:               # alta | media | baixa
+  # --- papel na esteira (oferta completa) ---
+  role_in_funnel:         # front_end_main_product | front_end_offer_stack | retargeting_order_bump_angle | retargeting_upsell_angle | proof_for_offer_stack | objection_breaker | ltv_expansion
+  main_product:           # produto principal promovido
+  related_order_bump:     # bump relacionado, se houver
+  related_upsell:         # upsell relacionado, se houver
+  awareness_stage:        # fria | problema | solucao | produto | quente_retargeting
+  offer_confusion_risk:   # baixo | medio | alto — front-end NÃO vende bump diretamente se prejudica clareza

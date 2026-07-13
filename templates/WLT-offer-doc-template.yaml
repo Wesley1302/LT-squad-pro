@@ -1,0 +1,22 @@
+# templates/WLT-offer-doc-template.yaml
+offer_doc:
+  product:
+  primary_promise:
+  result:
+  timeframe:
+  without:                # objeção removida
+  big_idea:
+  negation:               # por que o jeito antigo falha
+  mechanism:
+  stack: []               # entregáveis {icone, nome, descricao, quantidade}
+  bonuses: []
+  order_bumps: []         # {nome, preco (~1/3), angulo: analise|execucao|expansao}
+  upsell:                 # {nome, preco (~3x)}
+  price_anchor:           # preços riscados + mockup tudão
+  ticket_maximo:          # principal + bumps + upsell
+  cta:                    # verbal ("Quero acessar agora")
+  proof:                  # real ou plano ético de obtenção
+  objections: []          # {objecao, resposta}
+  guarantee:
+  who_it_is_for:
+  who_it_is_not_for:

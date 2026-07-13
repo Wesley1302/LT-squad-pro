@@ -1,0 +1,12 @@
+# templates/WLT-ebook-blueprint-template.yaml
+ebook_blueprint:
+  title:
+  avatar:
+  dor:
+  promise:
+  tom:
+  paginas_estimadas:      # 20-80
+  sumario: []             # - {capitulo, objetivo_micro_resultado, exercicio_ou_checklist}
+  resumo_final:
+  o_que_evitar: []        # inchaço, teoria sem aplicação
+  criterio_qualidade: "consumível <48h, cada capítulo entrega 1 micro-resultado"

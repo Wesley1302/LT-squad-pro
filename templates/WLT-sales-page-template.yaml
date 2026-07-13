@@ -1,0 +1,17 @@
+# templates/WLT-sales-page-template.yaml
+# Preço só na dobra 9. CTA verbal. Sem depoimento inventado. Copy na voz do avatar.
+sales_page:
+  fold_1_promise:         # nome + promessa (resultado+tempo) + mockup + diferencial
+  fold_2_proof:           # prints reais / plano ético
+  fold_3_voices:          # vozes na cabeça com palavras do avatar
+  fold_4_pain_to_solution: # 5 motivos externos
+  fold_5_steps:           # máx 5, ideal 3 (Baixe -> Personalize -> Use)
+  fold_6_deliverables:    # ícone+nome+descrição, quantidades, bônus separado
+  fold_7_who_for:         # serve / não serve
+  fold_8_anchor:          # preços riscados + mockup tudão
+  fold_9_price_cta:       # PRIMEIRO preço: de/por + CTA verbal + garantia
+  fold_10_cost_of_inaction:
+  fold_11_authority:      # só aqui o expert
+  fold_12_faq_price:      # FAQ + repete preço
+  footer:                 # e-mail, CNPJ, endereço, Termos, Política
+  design_direction:       # mockups, ancoragem, CTA sticky opcional

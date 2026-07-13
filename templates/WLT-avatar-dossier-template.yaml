@@ -1,0 +1,17 @@
+# templates/WLT-avatar-dossier-template.yaml
+avatar_dossier:
+  summary:                 # 2-3 linhas de quem é
+  situation:              # contexto de vida/trabalho
+  visible_pains: []       # dores que a pessoa admite
+  invisible_pains: []     # dores que esconde
+  voices_in_head: []      # {tipo: duvida|comparacao|derrota, quote, source}
+  sapatos_apertados: []   # {incomodo, recorrencia, evidencia}
+  failed_attempts: []     # o que já tentou e não deu
+  desires: []
+  objections: []
+  language_bank: []       # 10 palavras/expressões reais do público
+  evidence_ledger: []     # itens no formato WLT-evidence-ledger-template
+  strategic_implications:
+    for_product:
+    for_offer:
+    for_creative:

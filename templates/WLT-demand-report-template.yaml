@@ -1,0 +1,14 @@
+# templates/WLT-demand-report-template.yaml
+demand_report:
+  sapato_avaliado:
+  research_sources: []    # {tipo, url, observacao}
+  scores:                 # 0-10
+    demand:
+    urgency:
+    buying_intent:
+    competition:
+    creative_potential:
+    product_instantaneo_potential:
+  decision:               # go | no_go | pivot_angle
+  reasoning:
+  risks: []

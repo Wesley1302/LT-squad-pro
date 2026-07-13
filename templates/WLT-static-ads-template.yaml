@@ -1,0 +1,15 @@
+# templates/WLT-static-ads-template.yaml
+# Rodada de estáticos/carrossel: mínimo 5 (existe-no-metodo), ideal 10+.
+static_ads_round:
+  round_id:
+  target_min: 10
+  ads: []                 # blocos WLT-creative-matrix-template (type: static|carrossel) + campos:
+  # - headline:
+  #   layout:
+  #   visual_hierarchy:
+  #   elements: []
+  #   aspect: 1:1 | 4:5 | 9:16
+  #   image_prompt:        # prompt para IA de imagem/design
+  #   final_text:
+  mix_check:
+    formatos_variados: false

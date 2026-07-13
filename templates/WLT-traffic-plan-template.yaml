@@ -1,0 +1,43 @@
+# templates/WLT-traffic-plan-template.yaml
+traffic_plan:
+  operacao: teste | escala
+  estrutura:
+    nomenclatura_campanha: "produto + tipo + criativo (existe-no-metodo mod.11; base das UTMs)"
+    excluir_compradores: true
+    inicio_programado: "~6h (antes do pico de vendas)"
+    campanhas: 1
+    objetivo: vendas
+    orcamento_nivel: campanha (CBO)
+    conjuntos: 1
+    publico: "Advantage+ / abertão, só Brasil, sem segmentar idade/gênero"
+    criativos: 5-20
+    otimizacao: "site apenas; maximizar nº de conversão (ou valor se LTV)"
+    pixel_evento: "compra"
+  tracking:                      # ver data/WLT-tracking-stack.yaml + WLT-tracking-readiness-checklist
+    pixel: "instalado na página + checkout"
+    capi: "ativa"
+    utms: "convenção registrada (utm_content = criativo)"
+  orcamento:
+    ticket:
+    cpa_ideal:            # ticket / 2
+    formula: "nº criativos × cpa_ideal"
+    orcamento_diario:
+    verba_curta: "dividir por 2, rodar mais dias (mín ~R$40/dia)"
+  metas:
+    roas: "2.0+"
+    cpv: "<= R$2,70"
+    cpc_checkout: "<= R$23"
+    cac: "< ticket"
+  janela_analise_1_3_7:
+    dia_1: "só observa (24h)"
+    dia_3: "baixa se ROAS ruim; mantém se bom; +20% se >1.6; dobra se >2.0"
+    dia_7: "candidato à escala se ROAS 2+ consistente"
+  pre_escala:                    # ver data/WLT-traffic-metrics.yaml -> pre_escala
+    regras: "ROAS>1.6/2d -> +20%/dia; ROAS>2.0 -> dobra no melhor dia; acumula 50 conv entre campanhas; janela 7d"
+  escala:
+    criterio: "winner validado (ROAS 2+, 50+ conversões)"
+    orcamento: "10x ticket"
+    regra_dia_1_2: "existe-no-metodo (mod.12): sem venda -> pausa; com venda e ROAS baixo -> +24h olhando histórico; antes de pausar, reduzir orçamento; média operacional >= ~1,5 conforme esteira"
+  ia_trafego:
+    camada_1: "Advantage+/Andromeda (menos é mais, CAPI, criativo é a nova segmentação)"
+    camada_2: "Claude/Manus conectado ao Meta (analisar/otimizar/dashboards)"

@@ -1,0 +1,11 @@
+# templates/WLT-deliverable-blueprint-template.yaml
+deliverable_blueprint:
+  deliverables: []        # um bloco por entregável:
+  # - name:
+  #   format:             # ebook | planilha | pack | mini_curso | checklist | micro_app | agente_de_ia | ...
+  #   scope:              # o que entra / o que NÃO entra
+  #   structure:          # sumário/seções/telas
+  #   quick_win:
+  #   consumption_time:   # <= 48h
+  #   done_criteria:
+  #   production_prompt_task:   # ex: WLT-generate-ebook-generation-prompt

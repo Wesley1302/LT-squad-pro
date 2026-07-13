@@ -1,0 +1,24 @@
+# templates/WLT-journey-state-template.yaml
+# Template para inicializar uma nova instância de state/WLT-lt-journey-state.yaml.
+# Copie para state/ ao começar um novo usuário/projeto. Estrutura completa em state/WLT-lt-journey-state.yaml.
+journey:
+  current_state: not_started
+  current_workflow: null
+  current_agent: WLT-lt-chief
+  current_task: WLT-run-initial-diagnosis
+  user_stage: null
+  bypasses: []
+  completed_steps: []
+  failed_steps: []
+identity: { user_background: null, skills: [], selected_skill: null, niche: null, micro_niche: null, unfair_advantage: null, validation_notes: null }
+avatar: { profile: null, pains_visible: [], pains_invisible: [], voices_in_head: [], sapatos_apertados: [], selected_sapato_apertado: null, desires: [], dreams: [], objections: [], failed_attempts: [], beliefs: [], language_bank: [], evidence_ledger: [] }
+demand: { research_sources: [], demand_score: null, urgency_score: null, buying_intent_score: null, competition_score: null, creative_potential_score: null, decision: null, risks: [] }
+product: { name: null, type: null, format: null, price: null, promise: null, quick_win: null, consumption_time: null, deliverables: [], order_bumps: [], order_bumps_validation_status: null, upsell: null, downsell: null, validation_status: null, product_brief: null }
+offer: { primary_promise: null, big_idea: null, negation: null, origin_story: null, proof: null, mechanism: null, stack: [], bonuses: [], anchor: null, cta: null, guarantee: null, objections: [], validation_status: null }
+deliverables: { blueprint: null, ebook: null, minicourse: null, ai_agent: null, micro_app: null, checklist: null, pack: null }
+page: { headline: null, sections: [], twelve_folds: [], copy: null, design_direction: null, validation_status: null }
+creatives: { research: null, angles: [], video_ads: [], static_ads: [], recording_plan: null, winners: [], testing_status: null }
+traffic: { tracking: { pixel_id: null, capi_status: null, purchase_event_status: null, utm_convention: null, validation: null }, frequency: null, budget: null, campaign_structure: null, roas: null, cac: null, cpv: null, ctr_link: null, connect_rate: null, checkout_rate: null, checkout_conversion: null, cpc_checkout: null, diagnosis: null, bottleneck: null }
+funnel_economics: { bump_conversion_rate: null, upsell_conversion_rate: null, avg_ticket_main: null, avg_ticket_funnel: null, funnel_uplift_pct: null }
+scale: { readiness: null, pre_scale_status: null, pre_scale_actions: [], scale_plan: null, next_offer: null, upsell: null, bump: null, ltv_plan: null, roadmap_30_60_90: null }
+ai_production: { prompts_generated: [], target_platform: null, generated_for: null, implementation_status: null, review_notes: null }

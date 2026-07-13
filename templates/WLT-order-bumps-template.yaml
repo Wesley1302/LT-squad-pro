@@ -1,0 +1,13 @@
+# templates/WLT-order-bumps-template.yaml
+# Um bloco por bump. Persistido em state.product.order_bumps.
+order_bumps:
+  - nome:                  # autoexplicativo, entende em 3s
+    angulo:                # analise | execucao | expansao
+    promessa_1_frase:
+    entregavel:            # simples de entregar
+    preco:                 # ~1/3 do principal (contexto > regra cega)
+    proxima_objecao_que_resolve:
+    proximo_passo_que_completa:
+    percepcao_valor:       # por que marca sem pensar
+    risco_confusao_oferta: # baixo | medio | alto
+  # justificativa_sem_bump: preencher SÓ se nenhum bump fizer sentido (raro)

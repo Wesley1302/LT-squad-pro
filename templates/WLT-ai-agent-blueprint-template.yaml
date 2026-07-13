@@ -1,0 +1,18 @@
+# templates/WLT-ai-agent-blueprint-template.yaml
+ai_agent_blueprint:
+  nome:
+  tarefa_especifica:      # a UMA tarefa que resolve (não brinquedo genérico)
+  usuario_ideal:
+  problema:
+  transformacao_esperada:
+  inputs_obrigatorios: []
+  perguntas_iniciais: []
+  fluxo_execucao: []
+  regras_decisao: []
+  formato_saida:
+  limites: []
+  anti_alucinacao: []
+  tom_de_voz:
+  exemplos_de_uso: []
+  testes_simulados: []
+  done_criteria: "funciona como PRODUTO low ticket, resolve a tarefa"

@@ -1,0 +1,21 @@
+# templates/WLT-diagnostic-report-template.yaml
+diagnostic_report:
+  metricas:
+    roas:
+    cpv:
+    cpc_checkout:
+    cac:
+    ctr_link:
+    connect_rate:
+    taxa_checkout:
+    conversao_checkout:
+    view_3s:
+    view_25:
+    view_50:
+  janela: "7d (teste) | mês+semana+3d (convertendo)"
+  primeiro_numero_quebrado:
+  gargalo:                # criativo | publico | pagina | oferta | checkout
+  causa:
+  correcao:               # uma coisa por vez
+  rotear_para:            # agent/task dono do problema
+  bloqueios:              # ex: "ROAS<2 e quer escalar -> corrigir rota"

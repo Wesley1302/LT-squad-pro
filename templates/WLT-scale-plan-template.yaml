@@ -1,0 +1,19 @@
+# templates/WLT-scale-plan-template.yaml
+scale_plan:
+  readiness: not_ready | ready
+  winner:
+    criativo_id:
+    conversoes:           # >= 50
+    roas:                 # >= 2
+  estrategia: escala_10x | escala_1_1_1 | escala_de_volume | escala_horizontal
+  orcamento: "10x ticket"
+  regra_dia_1_2: "existe-no-metodo (mod.12): sem venda -> pausa; com venda e ROAS baixo -> +24h olhando histórico; antes de pausar, reduzir orçamento; média operacional >= ~1,5 conforme esteira"
+  ltv_plan:
+next_offer_plan:
+  movimento: variacao_winner | novo_bump | upsell | novo_produto | esteira | remarketing | novo_angulo | novo_publico
+  justificativa:          # baseada em ROAS/LTV
+  roadmap_30_60_90:
+    d30:
+    d60:
+    d90:
+  reinicia_ciclo_em:      # WLT-offer-build-cycle | WLT-product-validation-cycle
