@@ -1,0 +1,32 @@
+# data/WLT-static-ad-formulas.yaml
+# Fórmulas de criativo estático. Consumido por: WLT-static-ads-builder.
+meta:
+  minimo_por_rodada: 10
+  formatos_aspecto: ["1:1", "4:5", "9:16"]
+
+formulas:
+  imagem_headline:
+    estrutura: "Hook gigante (headline) + preço + ancoragem. Estático puro."
+    quando: "Público que já reconhece a dor; ancorar valor antes do clique."
+  carrossel:
+    estrutura: "Card 1 = hook; cards 2-4 = ensina/tangibiliza; card final = CTA."
+    quando: "Ensinar e tangibilizar; funciona também no orgânico."
+  print_prova:
+    estrutura: "Print de WhatsApp/DM/campanha + 1 linha de contexto."
+    quando: "Prova social direta. NUNCA inventar."
+  comparacao:
+    estrutura: "Antes/depois conceitual, com vs sem, erro vs certo."
+  checklist_visual:
+    estrutura: "Lista visual que já entrega micro-valor + CTA pro produto completo."
+  tabela_de_erros:
+    estrutura: "3-5 erros comuns do nicho organizados."
+  meme_contextual:
+    estrutura: "Meme do nicho que ativa identificação + amarra no produto."
+  advertorial_visual:
+    estrutura: "Cara de matéria/notícia, headline editorial."
+
+regras:
+  - "Headline usa palavras REAIS do avatar (language_bank)."
+  - "Se coloca preço, ancora antes (de/por)."
+  - "Não usa CTA 'Comprar' — leva pra página."
+  - "Prompt de produção de imagem sai via WLT-generate-static-ads / WLT-generate-design-system-prompt."

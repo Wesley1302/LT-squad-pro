@@ -1,0 +1,55 @@
+# data/WLT-page-12-dobras.yaml
+# Estrutura de página de vendas. Consumido por: WLT-sales-page-builder, WLT-ai-production-prompt-engineer.
+meta:
+  conversao_alvo: "~10%."
+  versao: "Estrutura principal = versão playbook (preço na dobra 9). Variante existe-no-metodo (mod.6): ancoragem na 9, preço+CTA na 10, carta aberta na 11, autoridade+FAQ na 12 — aceitável quando houver carta aberta."
+  regra_preco: "O preço só aparece na dobra 9, depois de construir todo o valor."
+  regra_cta: "CTA verbal ('Quero acessar agora'), NUNCA 'Comprar'."
+  regra_prova: "Nunca inventar depoimento. Print de WhatsApp/Instagram com NOME (corta telefone, mantém nome/@)."
+
+as_3_vozes_dos_3_segundos:
+  - { voz: "Ceticismo", pensamento: "Já vi mais um curso enrolado.", silencia_com: "Promessa clara + tempo de resultado." }
+  - { voz: "Rejeição", pensamento: "Isso não é pra mim.", silencia_com: "Nicho específico no headline." }
+  - { voz: "Defesa", pensamento: "Vão me cobrar caro.", silencia_com: "Ancoragem visual antes do preço." }
+
+dobras:
+  - n: 1
+    nome: "Promessa Principal"
+    funcao: "Nome + Promessa (o que resolve + tempo) + Mockup + Diferencial. Se não vender aqui, ela nem rola."
+  - n: 2
+    nome: "Prova Social"
+    funcao: "Prints de WhatsApp. Depoimentos que falam do RESULTADO, não do expert."
+    omissao: "existe-no-metodo (mod.6): sem prova REAL, a dobra pode ser OMITIDA — nunca inventar/usar prints falsos."
+  - n: 3
+    nome: "Vozes na Cabeça"
+    funcao: "Nomeia o incômodo com as palavras EXATAS do público. 'Parece que tá falando comigo'."
+  - n: 4
+    nome: "Transição Dor -> Solução"
+    funcao: "5 motivos EXTERNOS. 'A culpa não é sua, é falta de ferramenta.'"
+  - n: 5
+    nome: "Passo a Passo"
+    funcao: "Mostra que é fácil. Máx 5 passos, ideal 3 (Baixe -> Personalize -> Use)."
+  - n: 6
+    nome: "Tudo que vai receber"
+    funcao: "Ícone + Nome + Descrição. Destaque quantidades. Bônus separado."
+  - n: 7
+    nome: "Para quem serve / não serve"
+    funcao: "'É pra você que...' vs 'Não é pra você que...'. Qualifica e exclui."
+  - n: 8
+    nome: "Ancoragem"
+    funcao: "Recapitula TUDO (preços riscados) + Mockup Tudão. Prepara o cérebro pro preço."
+  - n: 9
+    nome: "Preço + Botão"
+    funcao: "PRIMEIRA vez que o preço aparece. Mockup + De/Por + CTA verbal + garantia."
+  - n: 10
+    nome: "O Preço de Ficar Parado"
+    funcao: "Faz calcular o custo de NÃO resolver. 'Me responda só a verdade...'"
+  - n: 11
+    nome: "Autoridade"
+    funcao: "SÓ AQUI aparece o expert. Foto natural + bio curta focada em resultados."
+  - n: 12
+    nome: "FAQ + Repetir Preço"
+    funcao: "Mesmo bloco da dobra 9. Quem rolou até aqui está pronto."
+
+rodape:
+  funcao: "Não conta como dobra. E-mail, CNPJ, endereço, Termos e Política (público frio é desconfiado)."

@@ -1,0 +1,37 @@
+# data/WLT-video-ad-formulas.yaml
+# Fórmulas de roteiro de vídeo. Consumido por: WLT-video-ads-builder, WLT-recording-director.
+meta:
+  minimo_por_rodada: 10
+  regra: "Nunca vender tudo no criativo. Gera desejo pelo produto e leva pra página."
+
+formula_a_sapato_voz_solucao_cta:
+  passos:
+    - sapato_apertado: "Levanta o incômodo específico e recorrente. 'Você que [situação] e [incômodo]...'"
+    - voz_da_cabeca: "Ativa o pensamento repetitivo. 'Eu sei que você está pensando [X]...'"
+    - solucao: "Tangibiliza o produto. Mostra o produto funcionando (impresso/tela/mockup)."
+    - cta: "Aponta o botão. 'Clica em Saiba Mais que eu te mostro tudo na próxima página.'"
+
+formula_b_app:
+  passos:
+    - atencao: "Gancho nos 3-5s (usar 8_mecanismos_de_gancho)."
+    - promessa: "Resultado claro, específico, com tempo."
+    - prova_cta: "Prova (se houver) + CTA simples apontando o botão."
+
+blocos_reutilizaveis:
+  aberturas: "Ver data/WLT-hook-bank-structure.yaml (8 mecanismos)."
+  provas: ["print de WhatsApp", "resultado de campanha (ROAS/vendas)", "depoimento de aluno", "número de alunos/plaquinhas"]
+  tangibilizacoes: "Ver data/WLT-creative-formats.yaml -> tangibilizar."
+
+exemplos_reais_desmontados:
+  - nome: "Desafio (caixinha)"
+    hook: "Como vai funcionar o desafio de low ticket?"
+    body: "4 pilares + o que ensina em cada dia."
+    cta: "Clica em Saiba Mais que eu te conto tudo na próxima página."
+  - nome: "365 roteiros (demonstração)"
+    hook: "Você tem disposição mas na hora de ligar a câmera não sabe o que falar."
+    body: "Mostra o produto funcionando: 365 roteiros validados, pega, adapta, grava."
+    cta: "Toca no botão aqui embaixo."
+  - nome: "Cronograma da casa (tangibiliza)"
+    hook: "Pago 3k pra minha ajudante e a casa tá suja e desorganizada. Cansei."
+    body: "Com 2 folhas no cronograma você tira o cansaço mental da cabeça."
+    cta: "Toca no botão Saiba Mais aqui embaixo."

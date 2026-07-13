@@ -1,0 +1,63 @@
+# data/WLT-low-ticket-principles.yaml
+# Fonte de verdade do método low ticket (Pedro Aredes / ProAlt / Desafio Low Ticket).
+# Consumido por: todos os agents Tier 1 e Tier 2. Nunca contradiga estes princípios.
+meta:
+  origin: "Materiais Pedro Aredes: Playbook V3, Desafio Low Ticket, aulas de criativo, funil e tráfego."
+  status: "existe-no-metodo"   # existe-no-metodo | convencao-observada | extensao-lt-squad-pro
+
+principios_nucleares:
+  - id: P01
+    nome: "A ordem é sagrada"
+    regra: "Produto (Miojo) -> Criativo (Fogo) -> Página (Água) -> Tráfego (Tempero). Tráfego sem os 3 primeiros é dinheiro jogado fora."
+  - id: P02
+    nome: "Uma única dor"
+    regra: "O produto resolve UM sapato apertado específico e recorrente. Não é curso completo picado."
+  - id: P03
+    nome: "48 horas"
+    regra: "Consumo/aplicação em até 48h. Quanto mais rápido o resultado, melhor. Sem curva de aprendizagem."
+  - id: P04
+    nome: "Resultado tangível imediato"
+    regra: "A pessoa sabe que funcionou sem esperar 3 meses. Abre, usa, resolve."
+  - id: P05
+    nome: "Ticket R$37-R$97"
+    regra: "Padrão inicial R$37-R$97. Pode subir (R$147) conforme o desejo da persona de resolver o problema. Decisão de compra rápida, sem pedir orçamento a ninguém."
+  - id: P06
+    nome: "Nome autoexplicativo"
+    regra: "Entende em 3 segundos o QUE recebe. Framework: Gancho + Conexão + Palavra-chave + Fechamento(opcional)."
+  - id: P07
+    nome: "O lucro mora na oferta"
+    regra: "Produto principal é o começo. ~30% do lucro vem de order bumps + upsell. Oferta completa = principal + bump(s) + upsell."
+  - id: P08
+    nome: "Criativo é o 80/20"
+    regra: "O criativo gera desejo ANTES da página. Página só confirma a decisão já tomada. Volume de criativo é obrigatório: ~1 winner a cada 50-60 criativos."
+  - id: P09
+    nome: "Público frio funciona"
+    regra: "Não precisa de audiência nem de virar influencer. Precisa de tráfego + produto/oferta/criativo/página certos. 1.112 compradores em 1 mês, 100% frio."
+  - id: P10
+    nome: "Desapego"
+    regra: "Low ticket é barato e rápido de propósito: testa, descarta, tenta outro. Erro não é trocar, é ficar 6 meses no produto perfeito parado."
+  - id: P11
+    nome: "Prova social vende low ticket"
+    regra: "Uma das coisas que mais vendem low ticket. NUNCA inventar prova/depoimento. Se não tem, criar plano ético de obtenção (print de WhatsApp/Instagram com nome, plaquinha de aluno, etc.)."
+  - id: P12
+    nome: "Página de vendas é o melhor funil"
+    regra: "Menos ruído, fácil de testar e escalar. Quiz roda ~8-10% do faturamento mas não serve para testar criativo/produto."
+
+as_6_mentiras_que_travam:
+  - mentira: "Não dá lucro"
+    verdade: "R$206k de lucro em <2 meses (descontado tráfego+comissões). Funil de e-book R$67 fazendo R$53.974/mês."
+  - mentira: "É só vender mais barato"
+    verdade: "Pegar curso de R$897 e vender por R$47 = prejuízo. Low ticket tem lógica de construção própria."
+  - mentira: "Precisa de audiência grande"
+    verdade: "1.112 compradores em 1 mês, 100% frio. Precisa de tráfego + produto certo, não de seguidores."
+  - mentira: "Precisa investir muito"
+    verdade: "Jefferson: R$1k -> R$8,4k de lucro em 24h. ROAS 9,39 · CAC R$7,22."
+  - mentira: "Não funciona pro meu nicho"
+    verdade: "Funcionou em engenharia, música/MPB, educação. Antes de culpar o nicho, desconte execução e oferta."
+  - mentira: "Tem que aparecer / virar influencer"
+    verdade: "Não precisa. O criativo e a oferta fazem o trabalho. Existe formato faceless."
+
+cases_de_prova:
+  - { nicho: "Engenharia (Jefferson)", resultado: "R$8.423 lucro em 1 dia · ROAS 9,39 · CAC R$7,22" }
+  - { nicho: "Música/MPB (Rafael Ferrari)", resultado: "R$7.008 em 7 dias, melhor semana do produto" }
+  - { nicho: "Educação (Profa Leticia)", resultado: "R$100k em 30 dias, começou com R$30 no gerenciador" }

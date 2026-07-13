@@ -1,0 +1,85 @@
+# data/WLT-traffic-metrics.yaml
+# Métricas de tráfego e estrutura de campanha. Consumido por: WLT-traffic-planner, WLT-funnel-diagnostician, WLT-scale-architect.
+meta:
+  ordem: "Tráfego é o TEMPERO. Só depois de produto + criativo + página."
+  duas_operacoes: "Teste de criativo (verba controlada) e Escala (verba agressiva). Nunca escale sem testar."
+
+os_4_numeros:
+  roas: { meta: "2.0+", papel: "Norte. A cada R$1 investido, quanto voltou.", nuance: "existe-no-metodo (mod.2/12): com esteira (bumps/upsell/LTV), ROAS 1,5-2 no front pode ser aceitável — a lucratividade vem dos produtos seguintes. SEM esteira, exigir 2.0+." }
+  cpv: { meta: "<= R$2,70 (ref. produto R$67)", papel: "Custo por ver a página. Alto -> problema no CRIATIVO." }
+  cpc_checkout: { meta: "<= R$23", papel: "Custo por checkout iniciado. Alto -> problema na PÁGINA." }
+  cac: { meta: "< ticket (até 50% do ticket ideal)", papel: "Custo de aquisição. Alto -> problema na OFERTA/checkout." }
+
+metricas_secundarias:
+  ctr_link: { meta: "~1,3%", mede: "% de quem viu o anúncio e clicou. Ruim -> gancho do anúncio." }
+  connect_rate: { meta: "~84%", mede: "% de cliques que chegaram na página." }
+  taxa_checkout: { meta: "~25%", mede: "% de visitas que foram pro checkout." }
+  conversao_checkout: { meta: "~40%", mede: "% de checkouts que viraram venda." }
+  view_3s: { meta: "20-25%", mede: "força do gancho." }
+  view_25: { meta: "8-15%", mede: "body está segurando." }
+  view_50: { meta: "3-5%", mede: "produto tangibilizado." }
+
+matematica_roas:
+  cpa_ideal: "Ticket ÷ ROAS. R$67 ÷ 2 = R$33,50."
+  lei_da_compensacao: "Se um número está abaixo, outro precisa compensar pra conta fechar."
+
+estrutura_campanha_teste:
+  formato: "1 Campanha (Vendas, CBO) -> 1 Conjunto (Advantage+, público abertão) -> 5 a 20 criativos."
+  publico: "Abertão. Só Brasil. NÃO segmentar idade nem gênero (o Facebook/Andromeda lê o criativo e entrega). Segmentar encarece o leilão."
+  otimizacao: "Site apenas. Maximizar nº de conversão (ou valor de conversão se pensar em LTV). Pixel + evento de compra."
+  orcamento: "nº criativos × CPA ideal. Ex: 5 × R$33,50 = R$167,50/dia. Verba curta: divide por 2 (R$82) e roda mais dias."
+  minimo_criativos: 5
+
+analise_1_3_7:
+  dia_1_24h: "Só observa. Vê se entrega, se tem clique, se algum zerou, se CPV não está alto. IGNORA ROAS/vendas/custo."
+  dia_1_regras:
+    - nao_converteu: "Mata a campanha. Analisa o R3C antes de tentar de novo."
+    - converteu_prejuizo: "Tem público. Pouca verba -> pausa, corrige, volta. Verba pra queimar -> deixa até dia 3."
+    - converteu_lucro: "Deixa rodar. Não mexe. Aguarda dia 3."
+  dia_3_mais:
+    - roas_ruim_1_2_dias: "Baixa orçamento ~20% e observa. Não corta no susto."
+    - roas_bom_7_dias: "Mantém ligado. Candidato à escala."
+    - roas_acima_1_6: "Escala +20% de orçamento (gradual)."
+    - roas_acima_2_0: "Dobra o orçamento (só no melhor dia de venda)."
+  janela_principal: "7 dias. Menos = algoritmo aprendendo. Mais = perde a chance de agir."
+
+pre_escala: # extensao-lt-squad-pro: consolida regras existe-no-metodo (mod.11 §7; playbook P05) como estágio entre TESTE e ESCALA 10x
+  quando: "Criativo promissor (ROAS > meta parcial) mas ainda SEM winner validado (50 conv + ROAS 2)."
+  regras:
+    - "ROAS > 1.6 por 2+ dias -> subir orçamento +20%/dia, gradual (existe-no-metodo)."
+    - "ROAS > 2.0 -> dobrar orçamento no melhor dia de venda (existe-no-metodo)."
+    - "Acumular as 50 conversões — podem SOMAR entre campanhas, sem limite de tempo (existe-no-metodo)."
+    - "Janela de leitura: 7 dias (existe-no-metodo)."
+    - "NÃO mexer em várias variáveis ao mesmo tempo (existe-no-metodo)."
+    - "Sair para a escala 10x APENAS com winner validado (gate: WLT-scale-readiness-checklist)."
+
+operacao_campanha: # existe-no-metodo (mod.11 §6)
+  nomenclatura: "produto + tipo de campanha + criativo (base das UTMs — ver data/WLT-tracking-stack.yaml)."
+  excluir_compradores: "Excluir compradores existentes no teste, quando adequado."
+  inicio: "Programar início ~6h da manhã (algoritmo distribui antes do pico de vendas)."
+  destinos: "Desativar posicionamentos/destinos extras que não fazem parte do teste."
+  duplicacao: "Duplicar o anúncio e trocar APENAS o criativo até atingir a quantidade planejada."
+
+5_erros_que_queimam_dinheiro:
+  - "Escalar cedo demais (ROAS 1.2 é hora de corrigir rota, não escalar)."
+  - "Testar poucos criativos (<5 não entrega; precisa de 10+ validados pra escalar)."
+  - "Ignorar métricas secundárias (só ROAS te cega — CPV/CPC importam)."
+  - "Apego a criativo ruim ('eu gosto' não é métrica; pausa ROAS 1.2)."
+  - "Checkout ruim / plataforma com alerta de golpe (mata o ROAS)."
+
+escala:
+  criterio_entrada: "Winner validado: ROAS 2+ com 50+ conversões."
+  orcamento: "Mínimo 10x o ticket (R$67 -> R$670/dia)."
+  estrutura: "1 campanha, 1 conjunto, N criativos winners."
+  regra_dia_1_2: "existe-no-metodo (mod.12): Dia 1 pode abrir abaixo da meta (aprendizado). Sem venda -> pausa. Com venda mesmo com ROAS baixo -> +24h olhando o histórico. Antes de pausar escala, reduza orçamento e veja se sustenta. Objetivo operacional: média >= ~1,5 conforme o modelo de negócio/esteira."
+  estrategias:
+    - escala_10x: "Todos os winners juntos numa Advantage+. Estabilidade. Pra quem tem 2+ winners."
+    - escala_1_1_1: "1 campanha/1 conjunto/1 criativo isolado. Sobe CPM e cansa rápido. Sprints curtos."
+    - escala_de_volume: "existe-no-metodo (mod.12 §4): >=3 criativos com >20 vendas nos últimos 7 dias (até 5 se os números forem próximos), olhando VOLUME, não ROAS. Mais previsibilidade. Não pausar criativos individualmente — analisar a campanha como conjunto."
+    - escala_horizontal: "Mesmo winner em públicos diferentes (ABO). Lookalike 1-2-3% de compradores, interesses, view 50%."
+  escala_horizontal_campanha: "Não aumenta verba — duplica a campanha inteira. Quando ROAS 2.0+ estável 3+ dias."
+
+tipos_de_funil:
+  pagina_de_vendas: "Melhor pra low ticket. Menos ruído, fácil testar/escalar."
+  quiz: "~8-10% do faturamento. Não serve pra testar criativo/produto."
+  vsl: "Existe, mas página é o padrão de teste."

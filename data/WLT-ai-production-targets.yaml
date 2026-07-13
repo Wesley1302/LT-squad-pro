@@ -1,0 +1,58 @@
+# data/WLT-ai-production-targets.yaml
+# Plataformas alvo da AI Production Prompt Layer. Consumido por: WLT-ai-production-prompt-engineer.
+meta:
+  papel: "Este agente NÃO decide estratégia. Só transforma artefato APROVADO em prompt executável."
+  regra_bloqueio: "Não gerar prompt de produção se o artefato estratégico falhou no checklist."
+
+plataformas:
+  codex:
+    tipo: "coding agent"
+    melhor_para: ["scripts", "automações", "planilhas com lógica", "backend"]
+    template: WLT-codex-prompt-template.md
+  claude_code:
+    tipo: "coding agent (terminal/IDE)"
+    melhor_para: ["landing page", "micro app", "componentes", "refactor", "design system"]
+    template: WLT-claude-code-prompt-template.md
+  claude_design:
+    tipo: "design/frontend"
+    melhor_para: ["UI/UX", "direção visual", "design system"]
+    template: WLT-claude-code-prompt-template.md
+  antigravity:
+    tipo: "IDE agentic"
+    melhor_para: ["landing page premium", "app fullstack"]
+    template: WLT-landing-page-prompt-template.md
+  lovable:
+    tipo: "app/site builder (IA)"
+    melhor_para: ["landing page de vendas", "micro app"]
+    template: WLT-landing-page-prompt-template.md
+    nota: "Melhor ferramenta pra criar site hoje (fluxo Pedro Aredes: ProAlt gera prompt -> Lovable monta a página)."
+  cursor:
+    tipo: "IDE agentic"
+    melhor_para: ["app", "componentes", "refactor"]
+    template: WLT-implementation-prompt-template.md
+  replit:
+    tipo: "app builder"
+    melhor_para: ["micro app", "protótipo"]
+    template: WLT-micro-app-prompt-template.md
+  v0:
+    tipo: "UI generator"
+    melhor_para: ["componentes", "landing page"]
+    template: WLT-landing-page-prompt-template.md
+  bolt:
+    tipo: "app builder"
+    melhor_para: ["micro app", "landing page"]
+    template: WLT-landing-page-prompt-template.md
+  outra_llm:
+    tipo: "LLM genérica (ChatGPT/Gemini/Claude/Manus)"
+    melhor_para: ["ebook", "mini-curso", "conteúdo", "agente de IA"]
+    template: WLT-implementation-prompt-template.md
+    nota: "Manus/Claude usado no fluxo Pedro Aredes pra gerar o produto (ebook/apresentações) pronto."
+
+roteamento_por_artefato:
+  ebook: { task: WLT-generate-ebook-generation-prompt, template: WLT-ebook-generation-prompt-template.md }
+  landing_page: { task: WLT-generate-landing-page-prompt, template: WLT-landing-page-prompt-template.md }
+  agente_de_ia: { task: WLT-generate-ai-agent-prompt, template: WLT-ai-agent-prompt-template.md, skill: assistant-creator-v2 }
+  micro_app: { task: WLT-generate-micro-app-prompt, template: WLT-micro-app-prompt-template.md }
+  design_system: { task: WLT-generate-design-system-prompt, template: WLT-claude-code-prompt-template.md, skill: frontend-design }
+  criativo_estatico: { task: WLT-generate-static-ads, template: WLT-static-ads-template.yaml }
+  implementacao_generica: { task: WLT-generate-implementation-prompt, template: WLT-implementation-prompt-template.md }

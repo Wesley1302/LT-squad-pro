@@ -1,0 +1,56 @@
+# data/WLT-tracking-stack.yaml
+# Fonte de verdade de rastreamento. Consumido por: WLT-traffic-planner, WLT-ai-production-prompt-engineer, WLT-funnel-diagnostician.
+# Labels: existe-no-metodo | extensao-lt-squad-pro | documentacao-oficial-verificar | convencao-tecnica
+meta:
+  regra_mestra: "existe-no-metodo (Playbook P10 passo 4): configure Pixel + CAPI ANTES de subir a campanha."
+  motivo_capi: "existe-no-metodo (Playbook P07): 'o Pixel perdeu força com a privacidade dos iPhones' — instale a API de Conversões."
+
+infraestrutura: # existe-no-metodo (módulo 10)
+  business_manager:
+    - "Criar BM em business.facebook.com."
+    - "Adicionar pelo menos +1 administrador de confiança (BM com 1 admin é vulnerável a bloqueio)."
+  conta_de_anuncios:
+    - "Criar conta: moeda BRL, fuso São Paulo, forma de pagamento (cuidado: Pix pós-pago pode impedir voltar pra cartão)."
+  pagina_e_instagram:
+    - "Criar/atribuir Página e conectar Instagram profissional (desvincular de BM anterior se houver erro)."
+
+pixel: # existe-no-metodo (módulo 10)
+  criar: "Fontes de dados -> Conjuntos de dados e Pixel -> criar, nomear, dar acesso a pessoas e à conta."
+  instalar_checkout: "Na plataforma de checkout (ex. Hotmart): ferramentas -> Pixel de rastreamento -> colar ID/token e validar."
+  instalar_landing_ia: "Landing gerada por vibe coding (Claude Code/Codex/Antigravity/Lovable): incluir o código base do Pixel no <head> via prompt de produção (ver data/WLT-landing-page-tech-stack.yaml -> rastreamento_na_landing)."
+  verificar: "Extensão Meta Pixel Helper no Chrome: acessar a página publicada e conferir Pixel verde/ativo."
+
+capi: # existe-no-metodo (menção); implementação detalhada = documentacao-oficial-verificar
+  regra: "Ativar a API de Conversões antes da campanha (método). Setup técnico (gateway/integração nativa do checkout ou implementação própria) segue a documentação oficial da Meta — NÃO improvisar."
+
+eventos: # extensao-lt-squad-pro (método só exige evento de compra como otimização)
+  minimos:
+    - "PageView (landing) — padrão do código base do Pixel."
+    - "ViewContent (landing) — opcional/condicional."
+    - "InitiateCheckout — disparo na ida ao checkout (nativo da plataforma de checkout quando integrada)."
+    - "Purchase — SEMPRE no lado do checkout (é o evento de otimização da campanha; existe-no-metodo)."
+  deduplicacao: "documentacao-oficial-verificar: quando Pixel (browser) e CAPI (server) enviam o MESMO evento, a deduplicação usa event_id/event_name idênticos nos dois lados. Verificar na doc oficial da Meta antes de implementar; não inventar sintaxe."
+
+utms: # extensao-lt-squad-pro (módulo 11 §6 cita 'parâmetros de rastreamento/UTM fornecidos no curso', sem detalhar)
+  convencao:
+    utm_source: "meta"
+    utm_medium: "paid"
+    utm_campaign: "alinhado à nomenclatura da campanha (produto+tipo+criativo — existe-no-metodo mod.11)"
+    utm_content: "identificador do criativo (liga venda -> criativo p/ análise de LTV por criativo)"
+  parametros_dinamicos: "documentacao-oficial-verificar: a Meta oferece placeholders dinâmicos de campanha/conjunto/anúncio; confirmar sintaxe vigente na doc oficial antes de usar."
+
+colunas_de_analise: # existe-no-metodo (módulo 10 §5)
+  padrao: [campanha, conjunto, orçamento, alcance, impressões, valor_usado, resultados, custo_por_resultado, CPM, cliques_link, CTR_link, CPC_link, views_pagina_destino, custo_por_view, inicio_checkout, compras, valor_conversao_compras]
+  personalizadas:
+    caixa: "valor de conversão das compras - valor usado"
+    taxa_compra_pagina: "compras ÷ visualizações da página de destino"
+    taxa_checkout: "checkouts (ou compras) ÷ visualizações da página de destino"
+    connect_rate: "visualizações da página de destino ÷ cliques no link"
+    cpv: "valor usado ÷ visualizações da página de destino"
+  nota: "Salvar em etapas — a Meta pode falhar ao salvar muitas colunas de uma vez (existe-no-metodo)."
+
+validacao_pos_publicacao: # extensao-lt-squad-pro (consolida o fluxo do método)
+  - "Pixel Helper verde na landing publicada."
+  - "Evento de compra de teste (ou primeira venda real) registrado no Gerenciador de Eventos."
+  - "Conferir Connect Rate após as primeiras horas (queda = link/redirect quebrado)."
+  - "Conferir UTMs chegando na plataforma de checkout/analytics."

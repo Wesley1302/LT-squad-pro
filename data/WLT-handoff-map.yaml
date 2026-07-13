@@ -1,0 +1,70 @@
+# data/WLT-handoff-map.yaml
+# Espinha de roteamento do squad. Consumido por: WLT-lt-chief e todos os workflows.
+# Cada handoff só dispara se required_artifacts existem no state E o checklist passou (PASS ou BYPASS documentado).
+meta:
+  regra_ordem: "Produto <- avatar+demanda | Order bumps <- produto validado | Oferta <- bumps validados | Página <- oferta | Criativo <- produto+oferta | Tráfego <- criativo+página | Escala <- winner validado."
+
+sequencia_canonica:
+  - WLT-run-initial-diagnosis
+  - WLT-identify-money-skill
+  - WLT-compress-niche
+  - WLT-research-avatar
+  - WLT-extract-voice-of-customer
+  - WLT-validate-demand
+  - WLT-select-sapato-apertado
+  - WLT-build-miojo-product
+  - WLT-validate-miojo-product
+  - WLT-build-order-bumps
+  - WLT-validate-order-bumps
+  - WLT-build-offer-promise
+  - WLT-build-offer-big-idea
+  - WLT-build-offer-mechanism
+  - WLT-build-offer-stack
+  - WLT-validate-offer
+  - WLT-create-deliverables-blueprint
+  - WLT-write-sales-page
+  - WLT-validate-sales-page
+  - WLT-analyze-creative-references
+  - WLT-generate-video-ads
+  - WLT-generate-static-ads
+  - WLT-create-recording-direction
+  - WLT-setup-tracking
+  - WLT-build-traffic-test-plan
+  - WLT-diagnose-funnel-bottleneck
+  - WLT-build-scale-plan
+  - WLT-build-next-offer-plan
+
+handoffs:
+  - { from_agent: WLT-lt-chief, to_agent: WLT-money-skill-strategist, from_task: WLT-run-initial-diagnosis, to_task: WLT-identify-money-skill, required_artifacts: [journey_state], gate: WLT-initial-diagnosis-checklist }
+  - { from_agent: WLT-money-skill-strategist, to_agent: WLT-niche-compressor, from_task: WLT-identify-money-skill, to_task: WLT-compress-niche, required_artifacts: [identity.selected_skill], gate: WLT-money-skill-checklist }
+  - { from_agent: WLT-niche-compressor, to_agent: WLT-avatar-researcher, from_task: WLT-compress-niche, to_task: WLT-research-avatar, required_artifacts: [identity.micro_niche], gate: WLT-niche-compression-checklist }
+  - { from_agent: WLT-avatar-researcher, to_agent: WLT-avatar-researcher, from_task: WLT-research-avatar, to_task: WLT-extract-voice-of-customer, required_artifacts: [avatar.profile], gate: WLT-avatar-quality-checklist }
+  - { from_agent: WLT-avatar-researcher, to_agent: WLT-demand-validator, from_task: WLT-extract-voice-of-customer, to_task: WLT-validate-demand, required_artifacts: [avatar_dossier, evidence_ledger], gate: WLT-evidence-ledger-checklist }
+  - { from_agent: WLT-demand-validator, to_agent: WLT-avatar-researcher, from_task: WLT-validate-demand, to_task: WLT-select-sapato-apertado, required_artifacts: [demand_report], gate: WLT-demand-validation-checklist }
+  - { from_agent: WLT-avatar-researcher, to_agent: WLT-product-miojo-builder, from_task: WLT-select-sapato-apertado, to_task: WLT-build-miojo-product, required_artifacts: [avatar.selected_sapato_apertado, demand_report], gate: WLT-avatar-quality-checklist }
+  - { from_agent: WLT-product-miojo-builder, to_agent: WLT-product-miojo-builder, from_task: WLT-build-miojo-product, to_task: WLT-validate-miojo-product, required_artifacts: [product_brief], gate: WLT-miojo-product-checklist }
+  - { from_agent: WLT-product-miojo-builder, to_agent: WLT-offer-architect, from_task: WLT-validate-miojo-product, to_task: WLT-build-order-bumps, required_artifacts: [product_brief, avatar_dossier, demand_report], gate: WLT-miojo-product-checklist, user_message: "Produto travado. Agora os order bumps — ~30% do lucro mora neles. Depois a oferta completa." }
+  - { from_agent: WLT-offer-architect, to_agent: WLT-offer-architect, from_task: WLT-build-order-bumps, to_task: WLT-validate-order-bumps, required_artifacts: [product.order_bumps], gate: WLT-order-bump-checklist }
+  - { from_agent: WLT-offer-architect, to_agent: WLT-offer-architect, from_task: WLT-validate-order-bumps, to_task: WLT-build-offer-promise, required_artifacts: [product.order_bumps, product_brief], gate: WLT-order-bump-checklist, user_message: "Bumps travados. Agora a oferta completa — principal + bumps + upsell é onde o lucro mora." }
+  - { from_agent: WLT-offer-architect, to_agent: WLT-offer-architect, from_task: WLT-build-offer-promise, to_task: WLT-build-offer-big-idea, required_artifacts: [offer.primary_promise] }
+  - { from_agent: WLT-offer-architect, to_agent: WLT-offer-architect, from_task: WLT-build-offer-big-idea, to_task: WLT-build-offer-mechanism, required_artifacts: [offer.big_idea] }
+  - { from_agent: WLT-offer-architect, to_agent: WLT-offer-architect, from_task: WLT-build-offer-mechanism, to_task: WLT-build-offer-stack, required_artifacts: [offer.mechanism] }
+  - { from_agent: WLT-offer-architect, to_agent: WLT-offer-architect, from_task: WLT-build-offer-stack, to_task: WLT-validate-offer, required_artifacts: [offer.stack], gate: WLT-offer-obviousness-checklist }
+  - { from_agent: WLT-offer-architect, to_agent: WLT-deliverable-builder, from_task: WLT-validate-offer, to_task: WLT-create-deliverables-blueprint, required_artifacts: [offer_doc], gate: WLT-offer-obviousness-checklist }
+  - { from_agent: WLT-deliverable-builder, to_agent: WLT-sales-page-builder, from_task: WLT-create-deliverables-blueprint, to_task: WLT-write-sales-page, required_artifacts: [deliverable_blueprint, offer_doc], gate: WLT-deliverable-quality-checklist }
+  - { from_agent: WLT-sales-page-builder, to_agent: WLT-sales-page-builder, from_task: WLT-write-sales-page, to_task: WLT-validate-sales-page, required_artifacts: [sales_page], gate: WLT-sales-page-12-dobras-checklist }
+  - { from_agent: WLT-sales-page-builder, to_agent: WLT-creative-intelligence-analyst, from_task: WLT-validate-sales-page, to_task: WLT-analyze-creative-references, required_artifacts: [sales_page, offer_doc, avatar_dossier], gate: WLT-sales-page-12-dobras-checklist }
+  - { from_agent: WLT-creative-intelligence-analyst, to_agent: WLT-video-ads-builder, from_task: WLT-analyze-creative-references, to_task: WLT-generate-video-ads, required_artifacts: [creatives.research, avatar_dossier, offer_doc], gate: WLT-creative-quality-checklist }
+  - { from_agent: WLT-video-ads-builder, to_agent: WLT-static-ads-builder, from_task: WLT-generate-video-ads, to_task: WLT-generate-static-ads, required_artifacts: [creatives.video_ads], gate: WLT-video-ad-checklist }
+  - { from_agent: WLT-static-ads-builder, to_agent: WLT-recording-director, from_task: WLT-generate-static-ads, to_task: WLT-create-recording-direction, required_artifacts: [creatives.static_ads], gate: WLT-static-ad-checklist }
+  - { from_agent: WLT-recording-director, to_agent: WLT-traffic-planner, from_task: WLT-create-recording-direction, to_task: WLT-setup-tracking, required_artifacts: [recording_plan, sales_page, creatives.video_ads], gate: WLT-recording-direction-checklist }
+  - { from_agent: WLT-traffic-planner, to_agent: WLT-traffic-planner, from_task: WLT-setup-tracking, to_task: WLT-build-traffic-test-plan, required_artifacts: [traffic.tracking], gate: WLT-tracking-readiness-checklist }
+  - { from_agent: WLT-traffic-planner, to_agent: WLT-funnel-diagnostician, from_task: WLT-build-traffic-test-plan, to_task: WLT-diagnose-funnel-bottleneck, required_artifacts: [traffic_plan], gate: WLT-traffic-readiness-checklist, condition: "usuário rodou tráfego e trouxe métricas" }
+  - { from_agent: WLT-funnel-diagnostician, to_agent: WLT-scale-architect, from_task: WLT-diagnose-funnel-bottleneck, to_task: WLT-build-scale-plan, required_artifacts: [diagnostic_report], gate: WLT-scale-readiness-checklist, pass_condition: "winner validado (ROAS 2+, 50+ conversões)" }
+  - { from_agent: WLT-scale-architect, to_agent: WLT-scale-architect, from_task: WLT-build-scale-plan, to_task: WLT-build-next-offer-plan, required_artifacts: [scale_plan], gate: WLT-scale-readiness-checklist }
+
+ai_production_branch:
+  quando: "A qualquer etapa APROVADA, se o usuário escolher gerar prompt (opções 2/3/4 do menu)."
+  to_agent: WLT-ai-production-prompt-engineer
+  gate: WLT-ai-production-prompt-quality-checklist
+  bloqueio: "Só se o artefato estratégico da etapa passou no checklist."

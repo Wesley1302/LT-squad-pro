@@ -1,0 +1,94 @@
+# data/WLT-product-types.yaml
+# Formatos de produto Miojo. Consumido por: WLT-product-miojo-builder, WLT-deliverable-builder, WLT-ai-production-prompt-engineer.
+meta:
+  regra_geral: "Formato importa MENOS que a promessa. Escolha o formato que entrega o quick win no menor atrito."
+
+criterios_miojo:
+  - "Resolve uma única dor (sapato apertado)"
+  - "Consumo/aplicação em até 48h"
+  - "Sem curva de aprendizagem"
+  - "Resultado tangível imediato"
+  - "Ticket R$37-R$97 (até R$147 conforme desejo)"
+  - "Nome autoexplicativo (entende em 3s)"
+
+formatos:
+  ebook_pdf:
+    quando_usar: "Conhecimento organizado, guia objetivo, passo a passo textual."
+    quando_nao_usar: "Quando o valor está na execução ao vivo ou em ferramenta interativa."
+    inputs_necessarios: [avatar_dossier, product_brief, sapato_apertado, promise]
+    output_esperado: "PDF/e-book 20-80 páginas, objetivo e consumível. Nada de livro inchado."
+    criterio_qualidade: "Consumo <48h, cada capítulo entrega 1 micro-resultado, exercícios/checklists."
+    prompt_producao: WLT-generate-ebook-generation-prompt
+
+  planilha:
+    quando_usar: "Cálculo, controle, gestão, precificação. Fórmulas prontas."
+    quando_nao_usar: "Quando a dor é de conhecimento e não de organização/cálculo."
+    inputs_necessarios: [avatar_dossier, product_brief, casos_de_uso, inputs_outputs]
+    output_esperado: "Planilha com fórmulas prontas pra usar, exemplo preenchido."
+    criterio_qualidade: "Abre e usa hoje. Zero configuração complexa."
+    prompt_producao: WLT-generate-micro-app-prompt
+
+  pack_kit:
+    quando_usar: "Coleção de templates/documentos/modelos/scripts prontos."
+    quando_nao_usar: "Quando falta um passo a passo que dê sentido aos itens."
+    inputs_necessarios: [avatar_dossier, product_brief, lista_entregaveis]
+    output_esperado: "Conjunto de arquivos editáveis, organizados, com instrução de uso."
+    criterio_qualidade: "Cada item resolve um passo do mesmo problema. Ex: '365 roteiros validados'."
+    prompt_producao: WLT-generate-implementation-prompt
+
+  mini_curso:
+    quando_usar: "Transformação exige demonstração em vídeo curto."
+    quando_nao_usar: "Quando pode ser entregue como PDF/checklist (prefira o mais simples)."
+    inputs_necessarios: [avatar_dossier, product_brief, promise, modulos]
+    output_esperado: "Máx 1-2h de vídeo, dividido em módulos com quick win no início."
+    criterio_qualidade: "Aluno aplica no mesmo dia. Não é curso completo disfarçado."
+    prompt_producao: WLT-generate-minicourse-blueprint
+
+  checklist:
+    quando_usar: "Dor é 'esquecer passos' / falta de processo."
+    quando_nao_usar: "Quando a dor exige ensino profundo."
+    inputs_necessarios: [avatar_dossier, product_brief]
+    output_esperado: "Passo a passo visual imprimível (ex: cola na geladeira)."
+    criterio_qualidade: "Imprime, segue, resolve. Tangível."
+    prompt_producao: WLT-generate-implementation-prompt
+
+  micro_app:
+    quando_usar: "Uma tarefa específica que um app web resolve melhor que PDF."
+    quando_nao_usar: "Quando caso de uso e inputs/outputs NÃO estão claros -> bloqueia."
+    inputs_necessarios: [problema, usuario, inputs, outputs, fluxo, telas]
+    output_esperado: "Ferramenta web de tarefa única, mobile-first."
+    criterio_qualidade: "Resolve 1 tarefa em <2min. Edge cases tratados."
+    prompt_producao: WLT-generate-micro-app-prompt
+
+  agente_de_ia:
+    quando_usar: "O método vira um assistente que resolve uma tarefa específica repetível."
+    quando_nao_usar: "Brinquedo genérico / chatbot que 'conversa'. Precisa resolver tarefa concreta."
+    inputs_necessarios: [tarefa_especifica, usuario_ideal, inputs, fluxo, regras_decisao, saida]
+    output_esperado: "Agente/GPT com system prompt completo, anti-alucinação, testes."
+    criterio_qualidade: "Funciona como PRODUTO, não como demo. Resolve tarefa que a persona paga pra resolver."
+    prompt_producao: WLT-generate-ai-agent-prompt
+    skill_externa: assistant-creator-v2
+
+  biblioteca_de_prompts:
+    quando_usar: "Persona quer resultados de IA sem saber prompar."
+    quando_nao_usar: "Quando os prompts não têm resultado testado."
+    inputs_necessarios: [avatar_dossier, casos_de_uso]
+    output_esperado: "Prompts prontos, categorizados, com instrução de uso."
+    criterio_qualidade: "Copia, cola, adapta ao nicho, funciona."
+    prompt_producao: WLT-generate-implementation-prompt
+
+  template_scripts:
+    quando_usar: "Dor é 'não sei o que escrever/dizer/postar'."
+    quando_nao_usar: "Quando falta contexto do nicho pra especificar."
+    inputs_necessarios: [avatar_dossier, product_brief]
+    output_esperado: "Scripts/templates editáveis (ex: '14 scripts pra recuperar venda no WhatsApp')."
+    criterio_qualidade: "Pega, adapta, usa hoje."
+    prompt_producao: WLT-generate-implementation-prompt
+
+  protocolo_curto:
+    quando_usar: "Sequência definida de ações que gera resultado rápido."
+    quando_nao_usar: "Quando não há sequência clara e mensurável."
+    inputs_necessarios: [avatar_dossier, product_brief, sequencia]
+    output_esperado: "Protocolo de N passos com resultado esperado por passo."
+    criterio_qualidade: "Segue o protocolo -> resultado em <48h."
+    prompt_producao: WLT-generate-implementation-prompt

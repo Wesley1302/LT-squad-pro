@@ -1,0 +1,67 @@
+# data/WLT-bottleneck-diagnosis-map.yaml
+# Mapa de diagnóstico de gargalo (R3C). Consumido por: WLT-funnel-diagnostician.
+meta:
+  premissa: "Quando a conta não fecha, o erro SEMPRE está em 1 de 5 lugares: Criativo, Público, Página, Oferta ou Checkout."
+  regra: "O gargalo é o PRIMEIRO ponto do funil fora da meta. Corrija esse antes dos de baixo. Uma coisa por vez."
+
+funil_de_numeros: "Anúncio (CTR/CPV) -> Página (Taxa checkout/CPC) -> Checkout (Conv./CAC) -> Resultado (CPA/ROAS)"
+
+diagnostico_rapido:
+  - sintoma: "CPV acima de R$2,70"
+    culpado: "CRIATIVO ou PÚBLICO"
+    causa: "Criativo não chama atenção / ganchos fracos"
+    acao: "Muda gancho, thumb, copy do anúncio. Testa novos criativos."
+  - sintoma: "CPC (checkout) acima de R$23"
+    culpado: "PÁGINA DE VENDAS"
+    causa: "Copy fraca ou confusa; página não converte"
+    acao: "Revisa as 12 dobras (mapa de calor: onde perde a pessoa). Normalmente testa headline."
+  - sintoma: "CAC acima do ticket"
+    culpado: "OFERTA ou CHECKOUT"
+    causa: "Vão pro checkout mas não compram"
+    acao: "Revisa preço, oferta, prova, objeção, plataforma de checkout."
+
+  - sintoma: "Frequência alta"
+    culpado: "PÚBLICO ou ORÇAMENTO"
+    causa: "existe-no-metodo (mod.11 §8): público pequeno, orçamento excessivo ou criativo repetido — o CTR tende a cair"
+    acao: "Reduzir verba, ampliar público ou renovar criativos (masterização)."
+  - sintoma: "Retenção de vídeo fora da meta (view3s/25/50)"
+    culpado: "CRIATIVO"
+    causa: "existe-no-metodo (mod.13): view3s baixo -> gancho; view25 baixo -> corpo/desejo; view50 baixo -> tangibilização do produto"
+    acao: "Corrigir a camada exata do criativo. Retenção alta + compras baixas -> problema em oferta/página/checkout, não no criativo."
+  - sintoma: "Conv. checkout baixa"
+    culpado: "CHECKOUT ou OFERTA"
+    causa: "existe-no-metodo (mod.11 §8): falta de confiança, preço mal percebido, oferta confusa, EXCESSO de order bumps, gateway inadequado"
+    acao: "Simplificar o checkout, revisar bumps (ver data/WLT-funnel-economics.yaml), revisar preço/oferta."
+  - sintoma: "Métricas boas, zero venda"
+    culpado: "DEMANDA ou CLAREZA DO PRODUTO"
+    causa: "existe-no-metodo (mod.11 §8): produto/oferta sem demanda ou pouco claros. Produto inexistente no mercado não é automaticamente oportunidade — pode não haver demanda."
+    acao: "Revalidar demanda (WLT-validate-demand) antes de mexer no funil."
+
+arvore_r3c:
+  - cpv_alto: "Poucas pessoas chegando na página -> CRIATIVO/PÚBLICO."
+  - cpc_alto: "Chegam mas não vão pro checkout -> PÁGINA."
+  - cac_alto: "Vão pro checkout mas não compram -> OFERTA/CHECKOUT."
+
+tabela_metas:
+  - { metrica: "CTR Link", meta: "1,3%", se_ruim: "Gancho do anúncio" }
+  - { metrica: "CPV", meta: "<= R$2,70", se_ruim: "Criativo ou público" }
+  - { metrica: "Taxa de Checkout", meta: "25%", se_ruim: "Página (dobras 1-8)" }
+  - { metrica: "CPC checkout", meta: "<= R$23", se_ruim: "Página de vendas" }
+  - { metrica: "Conv. Checkout", meta: "40%", se_ruim: "Oferta / checkout / preço" }
+  - { metrica: "CAC", meta: "< ticket", se_ruim: "Oferta ou público" }
+
+zero_venda_apos_teste_valido:
+  regra: "Só conclui 'não funciona' após: criativo na estrutura certa + página 12 dobras + tráfego com verba e tempo (7+ dias)."
+  decisao:
+    - cpv_bom_ninguem_compra: "Tem atenção, falta desejo/oferta -> troca o PRODUTO (mesmo nicho, novo sapato)."
+    - cpv_altissimo_ninguem_para: "Público não reage à dor -> testa +1 ângulo de sapato antes de trocar nicho."
+    - tres_produtos_no_nicho_sem_venda: "Aí sim o problema é o NICHO -> pivota."
+    - converteu_com_prejuizo: "Não troca nada. Tem demanda. Corrige o R3C e roda de novo."
+
+detalhamento: # existe-no-metodo (mod.11 §9)
+  regra: "Usar breakdown (gênero, plataforma FB/IG, dia, idade, região, horário) para descobrir ONDE está o melhor ROAS — não para segmentar prematuramente."
+  acao: "Grupo vencedor identificado -> criar campanha específica + novos criativos para ele."
+
+economia_do_funil: # ver data/WLT-funnel-economics.yaml
+  bump_abaixo_de_30pct: "Conversão do bump < ~30% (referência do método: 30-40%) -> revisar oferta do bump (completa vs compete, preço 'marca sem pensar')."
+  ticket_medio: "Ler avg_ticket_funnel vs avg_ticket_main no state para decidir se o gargalo é aquisição ou monetização."

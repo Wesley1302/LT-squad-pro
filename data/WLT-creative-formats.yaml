@@ -1,0 +1,66 @@
+# data/WLT-creative-formats.yaml
+# Formatos e estrutura de criativos. Consumido por: WLT-video-ads-builder, WLT-static-ads-builder, WLT-recording-director, WLT-creative-intelligence-analyst.
+meta:
+  principio: "Criativo é o 80/20. Gera desejo pelo PRODUTO (não só pela dor/solução). ~1 winner a cada 50-60 criativos."
+  estrutura_base: "Sapato Apertado -> Voz da Cabeça -> Solução (tangibiliza produto) -> CTA"
+  copy_app: "Atenção (3s, para o scroll) -> Promessa (retém) -> Prova/CTA (mostra produto + clique)"
+  tempo_ideal: "15-30s (curto) ou 45-60s (médio). Retenção boa justifica até 1min10. Nada de longo."
+  formato_dominante: "Lo-fi (selfie, celular na mão, sem tripé). Todos que performam são lo-fi."
+
+formatos_video:
+  - lo_fi_selfie: "Você falando direto pra câmera. Sem produção. Como uma DM em vídeo. FORMATO QUE MAIS VENDE."
+  - caixinha_de_perguntas: "Abre a caixinha do Stories, você mesmo manda a pergunta e responde (grava, baixa, não posta)."
+  - fofoquinha: "Duas pessoas conversando / cochicho / segredo do nicho. Tom íntimo, conspiratório. Ex: A pergunta, B responde."
+  - react_de_criativo: "Você reagindo a outro criativo/estrutura. Quebra padrão e gera autoridade."
+  - print_de_depoimento: "No meio do criativo: 'olha o resultado da minha aluna' + print. Prova social."
+  - ugc_cliente: "Aluno/influenciador vendendo o produto ('achado revolucionário'). Diferente de depoimento — enche a bola do PRODUTO."
+  - walking_talk: "Falando enquanto caminha."
+  - tela_gravada: "Screen recording demonstrando o produto/ferramenta."
+  - demonstracao_produto: "Tangibiliza: e-book impresso na mão, planilha no A4, produto na tela."
+  - storytelling: "História que leva à solução."
+  - erro_comum: "Aponta o erro que a persona comete."
+  - resposta_a_comentario: "Responde uma dúvida/comentário real (vira gancho)."
+
+formatos_estatico:
+  - imagem_headline: "Estático puro. Hook gigante + preço + ancoragem antes do clique."
+  - carrossel: "Sequência de imagens com texto. Ensina e tangibiliza. Funciona também no orgânico."
+  - print_prova: "Print de WhatsApp/DM/resultado de campanha."
+  - comparacao: "Antes/depois conceitual, com vs sem."
+  - checklist_visual: "Lista visual que já entrega valor."
+  - mockup_produto: "Produto renderizado (capa e-book, planilha)."
+  - tabela_de_erros: "Erros comuns organizados."
+  - meme_contextual: "Meme do nicho que ativa identificação."
+  - advertorial_visual: "Formato editorial/notícia."
+
+tangibilizar:
+  regra: "Se a pessoa não vê o produto, ela duvida que existe."
+  como: ["e-book impresso na mão", "planilha no A4", "produto na tela do celular/PC", "cronograma impresso na geladeira", "caixinha do Stories sobre o produto"]
+
+role_in_funnel:
+  regra_front_end: "Criativo front-end vende o PRODUTO PRINCIPAL, alinhado com a oferta completa. NÃO vende o bump diretamente se prejudica a clareza — mas pode preparar desejo, contexto e percepção de valor pra esteira."
+  retargeting: "Ângulos de retargeting: expansão, complemento, prova, bônus, próximo passo (bump/upsell). Público quente -> offer lead direto."
+  valores: [front_end_main_product, front_end_offer_stack, retargeting_order_bump_angle, retargeting_upsell_angle, proof_for_offer_stack, objection_breaker, ltv_expansion]
+  registro: "Todo criativo registra role_in_funnel + main_product + related_order_bump/upsell + awareness_stage + offer_confusion_risk na matriz (WLT-creative-matrix-template)."
+
+winners:
+  definicao: "50 conversões + ROAS 2+ (sem limite de tempo)."
+  erro_comum: "Achar um winner e criar do zero. Você joga fora o argumento que provou funcionar."
+  masterizacao: "Mantém o ARGUMENTO, muda a EXECUÇÃO. Cria 5-15 variações até cansar."
+  eixos_de_variacao:
+    - mudar_cenario: "Mesmo argumento, ambiente diferente (quarto -> cozinha -> carro)."
+    - trocar_ponto_de_vista: "Mesma fala em ângulo/formato diferente (selfie -> tripé -> caixinha -> entrevista -> print WhatsApp)."
+    - mudar_formato: "Talking head vira caixinha; caixinha vira fofoquinha."
+    - trocar_abertura: "Mesmo body, gancho novo."
+  testes_rapidos_sem_regravar: ["headline com preço ('Por apenas R$47')", "print de depoimento como abertura", "trocar a pergunta da caixinha", "tarja vermelha de prova social por cima do vídeo original", "formatinho de tweet por cima (aumenta retenção)"]
+
+masterizacao_de_winners: # existe-no-metodo (mod.13 §8 + transcrições 19/21-06)
+  gate: "SÓ masterizar criativo com 50 conversões + ROAS 2 (winner validado). NUNCA masterizar ROAS ~1.2 — gera mais criativos com prejuízo."
+  meta: "~90% dos novos criativos devem DERIVAR de winners. Criar do zero é a exceção, não a regra."
+  tecnicas:
+    - "Mudar cenário (quarto -> cozinha -> carro)."
+    - "Trocar ponto de vista: mesmo depoimento em caixinha -> print de WhatsApp -> entrevista."
+    - "Mudar formato (talking head -> caixinha -> fofoquinha)."
+    - "Trocar SÓ os 3 primeiros segundos (novo gancho, mesmo body)."
+    - "Overlay de texto estilo tweet por cima do vídeo original (aumenta retenção)."
+    - "Tarja de prova social por cima do vídeo original."
+    - "Teste com preço na headline ('Por apenas R$47')."

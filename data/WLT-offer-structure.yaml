@@ -1,0 +1,53 @@
+# data/WLT-offer-structure.yaml
+# Estrutura de oferta low ticket. Consumido por: WLT-offer-architect, WLT-sales-page-builder.
+meta:
+  principio: "O produto principal é só o começo. ~30% do lucro mora nos bumps. Oferta = principal + bump(s) + upsell."
+
+blocos_da_oferta:
+  promessa:
+    o_que: "Resultado específico + prazo + sem [objeção principal]."
+    exemplo: "Fature R$500 extras no fim de semana com 7 receitas prontas, sem testar receita toda hora."
+  big_idea_tese:
+    o_que: "A ideia diferenciada que reposiciona o problema. Por que o jeito antigo falha."
+    exemplo: "Vender pudim não depende do sabor da cozinha — depende de ter a receita e o preço certos."
+  mecanismo:
+    o_que: "O 'como' crível e único. Por que ESTE método funciona."
+  entregaveis:
+    o_que: "Ícone + Nome + Descrição. Destaque quantidades (números vendem). Bônus separado."
+  bonus:
+    o_que: "Complementa a promessa, aumenta valor percebido. Listado à parte do principal."
+  order_bump:
+    o_que: "Oferta no checkout que COMPLETA (não compete). Resolve o próximo passo do mesmo problema."
+    preco: "~1/3 do principal (R$67 -> R$18-27)."
+    conversao: "16-39%."
+    regra: "Barato o bastante pra marcar sem pensar. Se precisa 'pensar' no preço, tá caro demais."
+    angulos:
+      - analise: "Quem comprou o principal ganha aplicação no caso dele. Ex: Roteiros + Análise do perfil."
+      - execucao: "Ensina a fazer. Ex: Roteiros + Edição no celular."
+      - expansao: "Mesmo público, novo canal. Ex: Roteiros (Reels) + 120 Stories."
+  upsell:
+    o_que: "Aparece só DEPOIS de confirmar o pedido. Cliente já provou intenção."
+    preco: "~3x o ticket (R$197)."
+    conversao: "~5%."
+  ancoragem:
+    o_que: "Recapitula tudo com preços riscados + mockup 'tudão'. Prepara o cérebro pro preço."
+  cta:
+    o_que: "Verbal, orientado a acesso. 'Quero acessar agora'. NUNCA 'Comprar'."
+  garantia:
+    o_que: "Remove risco. Ex: 7 dias. Reduz a voz de defesa."
+  objecoes:
+    o_que: "Lista das objeções reais do avatar_dossier + resposta de cada uma."
+  prova:
+    o_que: "Real ou plano ético de obtenção. Nunca inventada."
+  filtro_comprador_errado:
+    o_que: "'É pra você que...' vs 'Não é pra você que...'. Qualifica e exclui."
+
+regra_de_ouro_do_bump: "Bump não compete, bump completa. Não é 'ou isso ou aquilo' (outro problema). É 'já que vai usar isso, leva também aquilo' (próximo passo do mesmo problema)."
+
+exemplo_ticket_maximo:
+  produto_principal: { nome: "300 Roteiros Validados", preco: 67.88 }
+  order_bump_1: { nome: "Análise do Perfil", preco: 23.64 }
+  order_bump_2: { nome: "120 Stories Validados", preco: 23.64 }
+  upsell: { nome: "Produto Vende Viral", preco: 197.00 }
+  ticket_maximo: 311.28
+  case: "80 vendas: Principal R$4.746,60 + Bumps R$1.169,86 + Upsell R$643,18 - Invest R$3.149,12 = Lucro R$3.786,82. Bumps = 30,9% do lucro."

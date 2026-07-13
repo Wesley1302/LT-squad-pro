@@ -1,0 +1,33 @@
+# data/WLT-funnel-economics.yaml
+# Economia do funil low ticket. Consumido por: WLT-offer-architect, WLT-funnel-diagnostician, WLT-scale-architect.
+# Labels: existe-no-metodo | extensao-lt-squad-pro | documentacao-oficial-verificar | convencao-tecnica
+meta:
+  principio: "existe-no-metodo (Playbook P01): o lucro não mora só no produto — mora na OFERTA COMPLETA (principal + bumps + upsell). ~30% do lucro mora nos bumps (case real: 30,9%)."
+
+estrutura_completa: # existe-no-metodo (módulo 14 §1)
+  caminho: "anúncio -> página de vendas -> checkout do principal -> order bump no checkout -> confirmação -> upsell -> (recusa) downsell -> acompanhamento e análise"
+  uplift_estimado: "ofertas complementares podem aumentar a lucratividade em ~20-30% (estimativa da aula; resultado real depende de produto, preço, tráfego e conversões)"
+
+medicao: # existe-no-metodo (módulo 14 §4-5)
+  bump_conversion: "compras com order bump ÷ total de compras × 100. Boa conversão: ~30-40%. Monitorar por período/produto antes de trocar a oferta."
+  upsell: "~3× o ticket, conversão ~5%, apresentado só APÓS a confirmação do pedido."
+  downsell: "versão menor/período menor/preço reduzido oferecida na recusa do upsell, sem conflitar com o que já foi comprado."
+  ticket_medio: "calcular ticket médio do principal vs ticket médio do funil; registrar o aumento percentual gerado pelas ofertas."
+
+checkout: # existe-no-metodo (módulo 14 §3) — passos condicionais à plataforma; Hotmart é o exemplo do método
+  passos_genericos:
+    - "Criar o produto complementar na plataforma."
+    - "No produto principal: configurar a oferta de order bump (preço, título, descrição, mockup)."
+    - "Revisar a copy do bump (nunca aceitar texto gerado sem revisão)."
+    - "Conferir visualização mobile e desktop do checkout."
+    - "Definir a oferta como padrão / associar ao checkout desejado."
+    - "SUBSTITUIR o link usado nos anúncios/página pelo checkout que contém o order bump."
+  alertas:
+    - "existe-no-metodo (mod.11 §8): EXCESSO de order bumps derruba a conversão do checkout."
+    - "existe-no-metodo (traffic-metrics): checkout sem confiança / plataforma com alerta de golpe mata o ROAS."
+
+analise_com_ia: # existe-no-metodo (módulo 14 §5)
+  fluxo: "exportar relatório de vendas do período -> enviar a um agente de análise -> ler conversão de bump/upsell, ticket médio do funil, contribuição de cada etapa e pontos de melhoria."
+
+ltv_por_criativo: # existe-no-metodo (transcrição 19-06)
+  regra: "Cruzar criativo de origem -> compras posteriores (LTV). Criativos que trazem compradores de maior LTV merecem prioridade na masterização e na esteira."

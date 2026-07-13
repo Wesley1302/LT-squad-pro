@@ -1,0 +1,47 @@
+# data/WLT-hook-bank-structure.yaml
+# Banco de ganchos, headlines e great leads. Consumido por: WLT-video-ads-builder, WLT-static-ads-builder, WLT-creative-intelligence-analyst.
+meta:
+  gancho: "Os 3 (até 5) primeiros segundos. Para o scroll. Se a view 3s está baixa, o gancho está fraco."
+
+8_mecanismos_de_gancho:
+  - prova_de_resultado: "'Copiei essa estrutura e faturei R$39 mil no primeiro mês'"
+  - segredo_revelacao: "'O segredo que não te contam sobre [tema]...'"
+  - pergunta_provocativa: "'Quanto o [problema] realmente está te custando?'"
+  - contraste_polarizacao: "'Pare de [ação comum no nicho]' · 'Poste conteúdo não'"
+  - curiosidade_suspense: "'Nos próximos 40 segundos, vou apagar seu medo de [X]'"
+  - lista_ranking: "'5 dicas pra [resultado] sem [objeção]'"
+  - erro_alerta: "'Um pequeno erro que custa R$9.000 por ano no seu negócio'"
+  - identificacao_emocional: "'Pra você que quer [resultado] mas não sabe por onde começar'"
+
+4_formulas_de_headline:
+  - resultado_tempo_sem_objecao: "'Como [resultado] em [tempo] sem [objeção]' -> 'Como faturar R$30k/mês sem aparecer, sem equipe e sem lançamento'"
+  - numero_acao_nicho: "'[X] maneiras de [resultado] em [nicho]' -> '7 formas de vender low ticket todo dia no automático'"
+  - prova_especificidade: "'Como eu [resultado específico] com [método não óbvio]' -> 'Como eu faturei R$39.511 no 1º mês com um produto de R$67'"
+  - antes_depois: "'De [situação ruim] para [situação boa] em [tempo]' -> 'Do zero aos R$110K de lucro: a estrutura que o mercado não te conta'"
+
+great_leads_por_temperatura:
+  regra_mestra: "Quanto mais frio o público, mais indireta a abertura. Quente -> direto na oferta. Frio -> história ou segredo."
+  leads:
+    - offer_lead: { temp: quente, quando: "remarketing", ex: "'R$67, acesso imediato, 7 dias de garantia'" }
+    - promise_lead: { temp: morno, quando: "transformação clara", ex: "'Fature R$30K/mês no automático'" }
+    - problem_solution: { temp: morno-frio, quando: "reconhece a dor", ex: "'Cansado de criar produto e ninguém comprar?'" }
+    - big_secret: { temp: frio, quando: "curiosidade máxima", ex: "'O que ninguém te conta sobre low ticket...'" }
+    - proclamation: { temp: frio, quando: "afirmação forte/polêmica", ex: "'85% dos negócios digitais nunca passam de R$10K'" }
+    - story_lead: { temp: frio, quando: "conexão emocional", ex: "'Há 2 anos eu estava quebrado...'" }
+
+headlines_validadas_dados_reais:
+  padrao: "valor em R$ + especificidade + low ticket = viral."
+  banco:
+    - { headline: "R$67 que viram R$38.511/mês no automático", alcance: 45867 }
+    - { headline: "O que tem dentro de um Low Ticket que fatura 1 Milhão", alcance: 36575 }
+    - { headline: "Pare de tentar vender produtos de R$1.000 pra desconhecidos", alcance: 26380 }
+    - { headline: "O Guia Simples Para Vender 10 Low-Tickets Por Dia", alcance: 17859 }
+    - { headline: "R$30K/mês no automático: a matemática", alcance: 10783 }
+
+cta_do_criativo:
+  regra: "O CTA do criativo NÃO vende — leva pra página. Quem vende é a página. Sempre aponte onde clicar."
+  exemplos:
+    - curiosidade: "'Clica em Saiba Mais que eu te mostro tudo na próxima página'"
+    - direto: "'É só tocar no botão aqui embaixo'"
+    - com_nome: "'Toca no botão e garante o [Nome do Produto]'"
+  evitar: ["CTA escondido no final", "pedir pra 'comprar agora'", "CTA longo/confuso", "não mostrar onde clicar"]

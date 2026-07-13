@@ -1,0 +1,62 @@
+# data/WLT-landing-page-tech-stack.yaml
+# Diretrizes técnicas e visuais da landing page premium. Consumido por: WLT-ai-production-prompt-engineer, WLT-sales-page-builder.
+meta:
+  objetivo: "Landing page low ticket premium que continua a conversa do criativo e converte."
+  correcao_explicita: "É GSAP, não GASP."
+
+estrategia_obrigatoria:
+  - "Produto, Avatar, Promessa, Oferta, Big Idea, Mecanismo, Prova, Objeções"
+  - "12 dobras (ver data/WLT-page-12-dobras.yaml)"
+  - "CTA verbal, Garantia, FAQ"
+
+ui_ux:
+  - "visual premium, refined gradients, subtle glassmorphism"
+  - "clean hierarchy, sections bem espaçadas"
+  - "mobile-first, desktop responsive"
+  - "conversion-focused layout"
+  - "mockups do produto, cards de entregáveis, blocos de prova, seção de ancoragem"
+  - "CTA sticky opcional"
+
+animacoes:
+  libs: ["GSAP", "ScrollTrigger", "Three.js"]
+  tecnicas: ["scroll reveals", "staggered entrances", "hover effects", "ambient motion", "interactive microinteractions", "smooth transitions", "subtle parallax", "animated mockups", "progress indicators", "CTA hover states"]
+  regra: "Usar quando fizer sentido. mobile-safe animations. Nunca animação pesada em mobile. Preservar velocidade."
+
+engenharia:
+  - "HTML/CSS/JS ou framework escolhido"
+  - "componentes organizados"
+  - "responsividade desktop/mobile"
+  - "acessibilidade, performance, SEO básico"
+  - "sem dependências desnecessárias"
+  - "assets placeholders, instruções de deploy, README curto, validação visual final"
+
+restricoes:
+  - "NÃO inventar depoimentos"
+  - "NÃO colocar preço antes da dobra 9"
+  - "NÃO usar CTA 'Comprar' — usar 'Quero acessar agora'"
+  - "NÃO usar texto genérico (usar language_bank do avatar)"
+  - "NÃO criar design que atrapalha conversão"
+  - "NÃO usar animação pesada em mobile — preservar velocidade"
+
+producao_vibe_coding: # extensao-lt-squad-pro (diretriz do usuário: landing 100% via vibe coding)
+  plataformas:
+    claude_code: { quando: "controle total do código, iteração local, integração com skills" }
+    codex: { quando: "geração/iteração de código via GPT Codex" }
+    antigravity: { quando: "produção assistida por agente com preview visual" }
+    lovable: { custo: "grátis limitado / ~$5-25/mês", quando: "velocidade máxima, IA monta o layout, menos controle" }
+  skills_obrigatorias: # extensao-lt-squad-pro
+    frontend-design: "Direção visual/archetypes ANTES de codar."
+    ui-ux-pro-max: "UX/UI e design system da landing/micro-app."
+    impeccable: "QA e polimento do frontend APÓS gerar/implementar."
+
+performance: # convencao-tecnica (o método cita apenas 'página lenta' como gargalo — mod.11 §8; não atribuir números ao método)
+  - "Página leve, mobile-first: maioria do tráfego low ticket chega pelo celular."
+  - "Carregamento rápido em 4G — página lenta derruba a taxa de ida ao checkout (existe-no-metodo: hipótese de gargalo)."
+  - "Imagens otimizadas (compressão + lazy loading abaixo da dobra 1)."
+  - "Animação SÓ se não degradar mobile (gate: regra já existente em animacoes.regra)."
+  - "Zero dependência desnecessária; preferir CSS/JS nativos a libs pesadas."
+
+rastreamento_na_landing: # ver data/WLT-tracking-stack.yaml
+  - "O prompt de landing DEVE incluir a inserção do código base do Meta Pixel no <head>."
+  - "Instruções de validação pós-publicação: Meta Pixel Helper verde + evento de teste."
+  - "UTMs preservadas no link para o checkout (não perder parâmetros no redirect)."
