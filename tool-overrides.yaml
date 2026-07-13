@@ -1,0 +1,37 @@
+# tool-overrides.yaml
+# Overrides de ferramentas por agent. Se o runtime não tiver web/tools, os agents caem no modo manual.
+meta:
+  note: "extensao-lt-squad-pro. Ajuste conforme as ferramentas disponíveis no seu runtime (Claude Code, ProAlt, etc.)."
+
+defaults:
+  allow: [read_state, write_state, read_template, read_data, read_checklist]
+  deny: []
+
+overrides:
+  WLT-avatar-researcher:
+    prefer: [web_search, web_fetch, comment_extractor]
+    fallback_when_no_web: manual_research_protocol
+    manual_research_protocol: |
+      Sem acesso à web: peça ao usuário links de vídeos (+100k views), prints de comentários,
+      transcrições, reviews e mensagens de direct. Trabalhe SÓ com os dados fornecidos.
+      Marque tudo sem fonte verificável como hipótese.
+  WLT-demand-validator:
+    prefer: [web_search, ads_library_lookup]
+    fallback_when_no_web: ask_user_for_evidence
+  WLT-creative-intelligence-analyst:
+    prefer: [ads_library_lookup, web_fetch]
+    fallback_when_no_web: ask_user_for_reference_links
+  WLT-ai-production-prompt-engineer:
+    prefer: [read_artifact]
+    deny: [strategy_decision]   # este agent NUNCA decide estratégia
+  WLT-sales-page-builder:
+    prefer: [read_data, read_template]
+  WLT-traffic-planner:
+    prefer: [read_data]
+
+skills:
+  assistant-creator-v2: { mode: reference_or_handoff }
+  frontend-design: { mode: reference_or_handoff }
+  ui-ux-pro-max: { mode: reference_or_handoff }
+  impeccable: { mode: reference_or_handoff }
+  carrossel-creator-v3: { mode: reference_only }

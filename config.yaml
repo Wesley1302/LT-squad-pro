@@ -1,0 +1,189 @@
+# =============================================================================
+# LT-squad-pro · config.yaml
+# Squad para construir, validar e escalar produtos low ticket.
+# Padrão de referência: AIOX-core (Agent -> Task -> Workflow -> Handoff -> State).
+# "existe-no-metodo" = método low ticket Pedro Aredes | "extensao" = adicionado pelo LT-squad-pro.
+# =============================================================================
+
+squad:
+  name: LT-squad-pro
+  display_name: "LT Squad Pro"
+  version: "1.2.0"
+  domain: "Low Ticket Product Creation, Offer, Creatives, Page, Traffic, Scale"
+  description: |
+    Squad modular para levar o usuário de "não sei que produto vender" até
+    "validei, escalei e preciso decidir a próxima oferta/upsell/esteira".
+    Constrói, valida e escala produtos low ticket com bloqueio de atalhos burros.
+  philosophy: |
+    Produto certo. Oferta óbvia. Criativo forte. Página que converte. Tráfego só depois.
+    Máquina de decisão e execução — não professor. Pergunta o mínimo, força especificidade,
+    transforma pesquisa em decisão, decisão em artefato, artefato em prompt executável.
+  keywords: [low-ticket, produto-miojo, oferta, avatar, criativos, pagina-de-vendas, trafego, escala, sapato-apertado, vozes-na-cabeca]
+  entry_agent: WLT-lt-chief
+  created_by: "lt-squad-pro-builder"
+  created_at: "2026-07-06"
+  language: pt-BR
+
+# --- TIERS -------------------------------------------------------------------
+tiers:
+  tier_0:
+    name: "Diagnosis & Routing"
+    purpose: "Diagnosticar estágio, bloquear atalhos, rotear para especialistas, controlar qualidade e state."
+    agents: [WLT-lt-chief]
+  tier_1:
+    name: "Strategy Core"
+    purpose: "Da skill monetizável ao produto e à oferta óbvia."
+    agents: [WLT-money-skill-strategist, WLT-niche-compressor, WLT-avatar-researcher, WLT-demand-validator, WLT-product-miojo-builder, WLT-offer-architect]
+  tier_2:
+    name: "Production & Execution"
+    purpose: "Entregáveis, página, criativos, direção de gravação, tráfego, diagnóstico, escala e prompts de produção."
+    agents: [WLT-deliverable-builder, WLT-sales-page-builder, WLT-creative-intelligence-analyst, WLT-video-ads-builder, WLT-static-ads-builder, WLT-recording-director, WLT-traffic-planner, WLT-funnel-diagnostician, WLT-scale-architect, WLT-ai-production-prompt-engineer]
+
+# --- AGENTS ------------------------------------------------------------------
+agents:
+  WLT-lt-chief:            { file: agents/WLT-lt-chief.md, tier: tier_0, focus: "Diagnóstico, roteamento, bloqueio, state, seleção de workflow, QA.", handoffs_to: [WLT-money-skill-strategist, WLT-demand-validator, WLT-product-miojo-builder, WLT-offer-architect, WLT-sales-page-builder, WLT-funnel-diagnostician, WLT-scale-architect, WLT-ai-production-prompt-engineer] }
+  WLT-money-skill-strategist: { file: agents/WLT-money-skill-strategist.md, tier: tier_1, focus: "Descobre a skill monetizável (conhecimento aplicado, não diploma).", handoffs_to: [WLT-niche-compressor] }
+  WLT-niche-compressor:    { file: agents/WLT-niche-compressor.md, tier: tier_1, focus: "Comprime o nicho até a vantagem injusta específica.", handoffs_to: [WLT-avatar-researcher] }
+  WLT-avatar-researcher:   { file: agents/WLT-avatar-researcher.md, tier: tier_1, focus: "Pesquisa avatar, vozes na cabeça, sapatos apertados, Evidence Ledger.", handoffs_to: [WLT-demand-validator, WLT-product-miojo-builder] }
+  WLT-demand-validator:    { file: agents/WLT-demand-validator.md, tier: tier_1, focus: "Valida demanda antes de criar produto.", handoffs_to: [WLT-avatar-researcher, WLT-product-miojo-builder] }
+  WLT-product-miojo-builder: { file: agents/WLT-product-miojo-builder.md, tier: tier_1, focus: "Cria e valida o Produto Miojo.", handoffs_to: [WLT-offer-architect] }
+  WLT-offer-architect:     { file: agents/WLT-offer-architect.md, tier: tier_1, focus: "Constrói a oferta óbvia (promessa, big idea, mecanismo, stack).", handoffs_to: [WLT-deliverable-builder, WLT-sales-page-builder] }
+  WLT-deliverable-builder: { file: agents/WLT-deliverable-builder.md, tier: tier_2, focus: "Blueprint dos entregáveis (ebook, mini-curso, agente, micro-app...).", handoffs_to: [WLT-sales-page-builder, WLT-ai-production-prompt-engineer] }
+  WLT-sales-page-builder:  { file: agents/WLT-sales-page-builder.md, tier: tier_2, focus: "Página de vendas em 12 dobras.", handoffs_to: [WLT-creative-intelligence-analyst, WLT-ai-production-prompt-engineer] }
+  WLT-creative-intelligence-analyst: { file: agents/WLT-creative-intelligence-analyst.md, tier: tier_2, focus: "Pesquisa de referências e padrões vencedores.", handoffs_to: [WLT-video-ads-builder, WLT-static-ads-builder] }
+  WLT-video-ads-builder:   { file: agents/WLT-video-ads-builder.md, tier: tier_2, focus: "Gera >=5 criativos em vídeo por rodada (ideal 10+).", handoffs_to: [WLT-static-ads-builder, WLT-recording-director] }
+  WLT-static-ads-builder:  { file: agents/WLT-static-ads-builder.md, tier: tier_2, focus: "Gera >=5 criativos estáticos/carrossel por rodada (ideal 10+).", handoffs_to: [WLT-recording-director, WLT-ai-production-prompt-engineer] }
+  WLT-recording-director:  { file: agents/WLT-recording-director.md, tier: tier_2, focus: "Direção de gravação (com/sem rosto, UGC).", handoffs_to: [WLT-traffic-planner] }
+  WLT-traffic-planner:     { file: agents/WLT-traffic-planner.md, tier: tier_2, focus: "Plano de tráfego de teste e escala.", handoffs_to: [WLT-funnel-diagnostician] }
+  WLT-funnel-diagnostician: { file: agents/WLT-funnel-diagnostician.md, tier: tier_2, focus: "Diagnóstico de gargalo (R3C).", handoffs_to: [WLT-scale-architect, WLT-creative-intelligence-analyst, WLT-sales-page-builder, WLT-offer-architect, WLT-product-miojo-builder] }
+  WLT-scale-architect:     { file: agents/WLT-scale-architect.md, tier: tier_2, focus: "Escala e decisão de próxima oferta/esteira.", handoffs_to: [WLT-offer-architect, WLT-product-miojo-builder] }
+  WLT-ai-production-prompt-engineer: { file: agents/WLT-ai-production-prompt-engineer.md, tier: tier_2, focus: "Transforma artefato aprovado em prompt executável por IA.", handoffs_to: [] }
+
+# --- HANDOFFS (resumo; contrato completo em docs/WLT-handoff-contracts.md + data/WLT-handoff-map.yaml) ---
+handoffs:
+  ref: data/WLT-handoff-map.yaml
+  rule: "Handoff só dispara com required_artifacts presentes no state e checklist em PASS ou BYPASS documentado."
+
+# --- CROSS-CUTTING -----------------------------------------------------------
+cross_cutting:
+  evidence_ledger:
+    rule: "Toda descoberta de público entra no Evidence Ledger. Sem evidência = hipótese, nunca fato."
+    template: templates/WLT-evidence-ledger-template.yaml
+  blocking:
+    rule: "Etapa avançada sem pré-requisito: nomear risco -> mostrar pré-req ausente -> redirecionar. Bypass só com a frase exata do usuário: 'quero pular com risco documentado'."
+    bypass_record: state.journey.bypasses
+  anti_generic:
+    rule: "Nunca resposta genérica. Nunca inventar prova/pesquisa/depoimento. Diferenciar existe-no-metodo | convencao-observada | extensao."
+    checklist: checklists/WLT-anti-generic-output-checklist.md
+  ai_production_menu:
+    rule: "Após cada artefato APROVADO, oferecer menu de produção por IA (opções 1-5)."
+    menu: |
+      Artefato aprovado. Escolha:
+      [1] Continuar para a próxima etapa
+      [2] Gerar prompt para Codex / Claude Code
+      [3] Gerar prompt para Lovable / Antigravity
+      [4] Gerar prompt para outra LLM
+      [5] Gerar versão para revisão humana
+
+# --- SETTINGS ----------------------------------------------------------------
+settings:
+  state_file: state/WLT-lt-journey-state.yaml
+  session_file: state/WLT-session-state.json
+  default_execution_mode: interactive   # yolo | interactive | preflight
+  tone: [direto, brutalmente-claro, sem-jargao, sem-floreio, foco-em-dinheiro]
+  currency: BRL
+  ticket_default_range: [37, 97]  # padrão do Desafio; método admite ~R$19-197 conforme persona (mod.2; transcrição 19-06) — fora da faixa exige justificativa no state
+  min_creatives_per_round: 5    # existe-no-metodo: mínimo 5 (5-20 por campanha; 3 já permite testar, mod.11)
+  ideal_creatives_per_round: 10 # 10+ recomendado para escalar (volume de teste)
+  # existe-no-metodo: 50 conversões (somadas entre campanhas, sem limite de tempo) + ROAS 2.
+  # Regra operacional da aula, não lei universal — override documentado permitido (extensao-lt-squad-pro)
+  # para ticket/verba fora do cenário R$67.
+  winner_definition: { conversions: 50, roas: 2.0 }
+
+external_skills:
+  assistant-creator-v2:
+    purpose: "Criar agentes de IA completos."
+    when_to_use: "Quando o produto escolhido for agente de IA, GPT, assistente ou ferramenta conversacional."
+    usage_mode: reference_or_handoff
+  frontend-design:
+    purpose: "Criar UI/UX, direção visual e frontend."
+    when_to_use: "Quando gerar landing page, micro app, dashboard ou experiência visual."
+    usage_mode: reference_or_handoff
+  ui-ux-pro-max:
+    purpose: "UX/UI e design system da landing page e do micro-app."
+    when_to_use: "Sempre antes de gerar o prompt de página/micro-app (define tokens, hierarquia, componentes)."
+    usage_mode: reference_or_handoff
+  impeccable:
+    purpose: "QA e polimento de frontend."
+    when_to_use: "Após gerar/implementar a página — revisão de qualidade visual e técnica."
+    usage_mode: reference_or_handoff
+  carrossel-creator-v3:
+    purpose: "Referência de hooks e estrutura de conteúdo."
+    when_to_use: "Somente inspiração estrutural de hooks/reels."
+    usage_mode: reference_only
+
+# --- USER COMMANDS (camada visível: prefixo lt-) -------------------------------
+# Arquivos em .claude/commands/lt-*.md (slash commands no Claude Code; espelháveis em outros runtimes).
+# Interno = WLT-* (agents/tasks/workflows). Visível = lt-*. lt-chief é a porta de entrada única.
+commands:
+  entry: lt-chief
+  map:
+    lt-chief:                 { agent: WLT-lt-chief, task: WLT-run-initial-diagnosis, nota: "orquestrador — conduz até o fim, usuário não precisa saber qual comando chamar" }
+    lt-diagnostico:           { agent: WLT-lt-chief, task: WLT-run-initial-diagnosis }
+    lt-money-skill:           { agent: WLT-money-skill-strategist, task: WLT-identify-money-skill }
+    lt-nicho:                 { agent: WLT-niche-compressor, task: WLT-compress-niche }
+    lt-avatar:                { agent: WLT-avatar-researcher, tasks: [WLT-research-avatar, WLT-extract-voice-of-customer, WLT-select-sapato-apertado] }
+    lt-demanda:               { agent: WLT-demand-validator, task: WLT-validate-demand }
+    lt-produto:               { agent: WLT-product-miojo-builder, tasks: [WLT-build-miojo-product, WLT-validate-miojo-product] }
+    lt-order-bumps:           { agent: WLT-offer-architect, tasks: [WLT-build-order-bumps, WLT-validate-order-bumps] }
+    lt-oferta:                { agent: WLT-offer-architect, workflow: WLT-offer-build-cycle }
+    lt-entregaveis:           { agent: WLT-deliverable-builder, task: WLT-create-deliverables-blueprint }
+    lt-pagina:                { agent: WLT-sales-page-builder, tasks: [WLT-write-sales-page, WLT-validate-sales-page] }
+    lt-inteligencia-criativa: { agent: WLT-creative-intelligence-analyst, task: WLT-analyze-creative-references }
+    lt-criativos:             { agents: [WLT-video-ads-builder, WLT-static-ads-builder], tasks: [WLT-generate-video-ads, WLT-generate-static-ads] }
+    lt-direcao:               { agent: WLT-recording-director, task: WLT-create-recording-direction }
+    lt-rastreamento:          { agent: WLT-traffic-planner, task: WLT-setup-tracking }
+    lt-trafego:               { agent: WLT-traffic-planner, task: WLT-build-traffic-test-plan }
+    lt-gargalo:               { agent: WLT-funnel-diagnostician, task: WLT-diagnose-funnel-bottleneck }
+    lt-escala:                { agent: WLT-scale-architect, task: WLT-build-scale-plan }
+    lt-esteira:               { agent: WLT-scale-architect, task: WLT-build-next-offer-plan }
+    lt-prompt-landing:        { agent: WLT-ai-production-prompt-engineer, task: WLT-generate-landing-page-prompt }
+    lt-prompt-agente:         { agent: WLT-ai-production-prompt-engineer, task: WLT-generate-ai-agent-prompt }
+    lt-prompt-ebook:          { agent: WLT-ai-production-prompt-engineer, task: WLT-generate-ebook-generation-prompt }
+    lt-prompt-micro-app:      { agent: WLT-ai-production-prompt-engineer, task: WLT-generate-micro-app-prompt }
+    lt-prompt-criativos:      { agent: WLT-ai-production-prompt-engineer, tasks: [WLT-generate-static-ads, WLT-generate-design-system-prompt, WLT-generate-implementation-prompt] }
+
+# --- ACTIVATION --------------------------------------------------------------
+activation:
+  entry: WLT-lt-chief
+  first_action: WLT-run-initial-diagnosis
+  greeting: |
+    LT Squad Pro. Eu não te dou ideias — eu te faço decidir e executar.
+    Me diga em uma frase onde você está: (a) não sei o que vender, (b) tenho nicho,
+    (c) tenho produto, (d) tenho tráfego sem venda, (e) tenho venda e quero escalar.
+  workflows:
+    - { id: WLT-lt-from-zero, when: "não sei o que vender / começar do zero" }
+    - { id: WLT-lt-with-existing-niche, when: "tenho nicho, falta produto" }
+    - { id: WLT-lt-with-existing-product, when: "já tenho produto" }
+    - { id: WLT-product-validation-cycle, when: "auditar/validar produto" }
+    - { id: WLT-offer-build-cycle, when: "construir oferta" }
+    - { id: WLT-deliverable-production-cycle, when: "produzir entregáveis" }
+    - { id: WLT-landing-page-production-cycle, when: "gerar página / prompt de página" }
+    - { id: WLT-creative-testing-cycle, when: "gerar e testar criativos" }
+    - { id: WLT-funnel-diagnosis-cycle, when: "gastei e não vendi / travei no tráfego" }
+    - { id: WLT-scale-cycle, when: "tenho venda, quero escalar" }
+    - { id: WLT-ai-production-prompt-cycle, when: "quero prompt pronto pra outra IA" }
+
+# --- COMPONENTS (índice de artefatos executáveis) ----------------------------
+components:
+  tasks_dir: tasks/
+  workflows_dir: workflows/
+  checklists_dir: checklists/
+  templates_dir: templates/
+  data_dir: data/
+  state_dir: state/
+  tests_dir: tests/
+  docs_dir: docs/
+  tool_overrides: tool-overrides.yaml
+  skill_projection:
+    note: "SKILL.md de Claude Code é PROJEÇÃO gerada a partir de um Agent. Ver docs/WLT-usage-guide.md -> 'Gerar SKILL.md'. A unidade executável reutilizável é a Task."
